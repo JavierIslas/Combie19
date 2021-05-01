@@ -3,7 +3,7 @@
 @section('title', 'Contact')
 
 @section('content')
-	<h1>Contactos</h1>
+	<h1>{{__('Informacion de Contacto')}}</h1>
 	<form method="POST" action= "{{ route('contact') }}">
 		@csrf
 		<input name="name" placeholder="Ingrese Nombre" value="{{ old('name') }}"> <br>
@@ -14,6 +14,6 @@
 		{!! $errors->first('subject', '<small>:message</small><br>') !!}
 		<textarea name="content" placeholder="Describa el Problema">{{ old('content') }}</textarea><br>
 		{!! $errors->first('content', '<small>:message</small><br>') !!}
-		<button>Enviar</button><br>
+		<button>@lang('Enviar')</button><br>
 	</form>
 @endsection
