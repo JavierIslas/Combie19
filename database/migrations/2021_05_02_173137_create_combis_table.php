@@ -14,7 +14,12 @@ class CreateCombisTable extends Migration
     public function up()
     {
         Schema::create('combis', function (Blueprint $table) {
-            $table->id();
+            $table->id('id');
+            $table->string('model');
+            $table->string('patente', 8);
+            $table->decimal('asientos');
+            $table->bigInteger('chofer_id')->unsigned();
+            $table->foreign('chofer_id')->references('id')->on('choferes');
             $table->timestamps();
         });
     }
