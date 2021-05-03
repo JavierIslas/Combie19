@@ -23,8 +23,8 @@ class CreateUsersTable extends Migration
             $table->date('birthday');
             $table->rememberToken();
             $table->timestamps();
-            $table->boolean('quarentine', false);
-            $table->boolean('gold', false);
+            $table->boolean('quarentine')->default('0');
+            $table->boolean('gold')->default('0');
         });
     }
 

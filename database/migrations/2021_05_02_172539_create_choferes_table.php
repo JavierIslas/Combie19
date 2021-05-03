@@ -14,8 +14,18 @@ class CreateChoferesTable extends Migration
     public function up()
     {
         Schema::create('choferes', function (Blueprint $table) {
-            $table->id();
+            $table->id('id');
+            $table->string('last name');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->string('phone');
+            $table->date('birthday');
+            $table->longText('extra');
+            $table->rememberToken();
             $table->timestamps();
+            $table->boolean('quarentine')->default('0');
         });
     }
 

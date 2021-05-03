@@ -15,6 +15,8 @@ class CreateLugaresTable extends Migration
     {
         Schema::create('lugares', function (Blueprint $table) {
             $table->id();
+            $table->string('cuidad');
+            $table->string('provincia');
             $table->timestamps();
         });
     }
