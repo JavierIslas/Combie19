@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Chofer;
+
 class portfolioController extends Controller
 {
     /**
@@ -13,9 +15,7 @@ class portfolioController extends Controller
      */
     public function index()
     {
-         $portfolio = [
-            ['title' => 'Proyecto #1'],
-        ];
+         $portfolio = Chofer::get();
 
         return view('portfolio', compact('portfolio'));
     }

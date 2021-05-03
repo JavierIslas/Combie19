@@ -17,7 +17,7 @@ class CreateCombisTable extends Migration
             $table->id('id');
             $table->string('model');
             $table->string('patente', 8);
-            $table->decimal('asientos');
+            $table->integer('asientos')->unsigned();
             $table->bigInteger('chofer_id')->unsigned();
             $table->foreign('chofer_id')->references('id')->on('choferes');
             $table->timestamps();

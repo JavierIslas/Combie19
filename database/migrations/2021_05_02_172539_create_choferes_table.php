@@ -15,7 +15,7 @@ class CreateChoferesTable extends Migration
     {
         Schema::create('choferes', function (Blueprint $table) {
             $table->id('id');
-            $table->string('last name');
+            $table->string('last_name');
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
