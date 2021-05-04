@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Chofer;
 
+use App\Http\Requests\altaChoferRequest;
+
 class ChoferController extends Controller
 {
     /**
@@ -29,9 +31,9 @@ class ChoferController extends Controller
         return view('Choferes.create');   
     }
 
-    public function store(){
-
-        Chofer::create(Request()->all());
+    public function store(altaChoferRequest $validacion){
+        
+        Chofer::create($validacion->validated());
 
         return redirect()->route('Choferes');
     }
