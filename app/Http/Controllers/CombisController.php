@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Combi;
+use App\Models\Chofer;
+
+use App\Http\Requests\SaveCombiRequest;
 
 class CombisController extends Controller
 {
@@ -27,7 +30,10 @@ class CombisController extends Controller
      */
         public function create()
     {
-        return view('Combis.create');
+
+        $choferes = Chofer::get();
+        return view('Combis.create',compact('choferes'),[
+               'combi' => new Combi]);
     }
 
     /**
@@ -36,17 +42,10 @@ class CombisController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SaveCombiRequest $request)
     {
-        $validated = $request->validate([
-        'model' => 'required|max:255',
-        'patente' => 'required|max:8|min:6',
-        'asientos' =>'required',
-        'tipo'=>'required',
-        'chofer_id'=>'required'
-    ]);
-
-        Combi::create(request()->all());
+        
+        Combi::create($request->validated());
         return redirect()->route('administracionCombis');
         
     }
@@ -59,8 +58,9 @@ class CombisController extends Controller
      */
     public function show($id)
     {
+        $choferes = Chofer::get();
         $combi= Combi::find($id);
-        return view('Combis.show',['combi' => Combi::findOrFail($id)]);
+        return view('Combis.show',['combi' => Combi::findOrFail($id)], compact('choferes'));
     }
 
     /**
@@ -71,7 +71,8 @@ class CombisController extends Controller
      */
     public function edit($id)
     {
-        //
+        $choferes = Chofer::get();
+        return view('Combis.edit',['combi' => Combi::findOrFail($id)], compact('choferes'));
     }
 
     /**
@@ -81,9 +82,13 @@ class CombisController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SaveCombiRequest $request, $id)
     {
-        //
+        
+        $combi= Combi::find($id);
+        $combi -> update($request -> validated());
+        return view('Combis.show',['combi' => Combi::findOrFail($combi->id)]);
+        
     }
 
     /**
@@ -94,6 +99,7 @@ class CombisController extends Controller
      */
     public function destroy($id)
     {
-        //
+       Combi::destroy($id);
+       return redirect()->route('administracionCombis');
     }
 }

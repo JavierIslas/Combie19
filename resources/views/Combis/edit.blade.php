@@ -1,12 +1,12 @@
 @extends('Layout')
 
-@section('title', 'Alta de Combi')
+@section('title', 'Modificar de Combi')
 
 @section('content')
-	<h1>Sistema de alta para una nueva combi</h1>
+	<h1>Sistema para modificar combi</h1>
 
-	<form method="POST" action="{{ route('administracionCombis.store') }}">
-		@csrf
+	<form method="POST" action="{{ route('administracionCombis.update', $combi) }}">
+		@csrf @method('PATCH')
 		<label>Modelo: </label><input type="string" name="model" value="{{old('model', $combi->model)}}"><br>
 		{!!$errors->first('model', '<small>:message</small><br>')!!}
 
@@ -28,9 +28,6 @@
                <option  value="{{$chofer->id}}">{{ $chofer->name .' ' . $chofer->last_name}}</option>
             @endforeach
         </select>
-        <button>Dar de Alta</button>
+		<button>Modificar combi</button>
 	</form>
 @endsection
-
-
-
