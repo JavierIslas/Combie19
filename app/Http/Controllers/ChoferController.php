@@ -23,12 +23,11 @@ class ChoferController extends Controller
     }
 
     public function show($id){
-       // return Chofer::find($id); Muestra un Json
         return view('Choferes.verChofer', ['chofer' => Chofer::findOrFail($id)]);
     }
 
     public function create(){
-        return view('Choferes.create');   
+        return view('Choferes.create', ['chofer' => new Chofer]);   
     }
 
     public function store(altaChoferRequest $validacion){
@@ -37,4 +36,21 @@ class ChoferController extends Controller
 
         return redirect()->route('Choferes');
     }
+
+    public function edit($id){
+         return view('Choferes.editar', ['chofer' => Chofer::findOrFail($id)]);
+    }
+
+    public function update(altaChoferRequest $validacion, $id){
+        $conductor = Chofer::findOrFail($id);
+        $conductor->update($validacion->validated());
+
+        return redirect()->route('Choferes.show', $id);
+    }
+
+    public function destroy($id){
+       Chofer::destroy($id);
+       return redirect()->route('Choferes');
+    }
+
    }

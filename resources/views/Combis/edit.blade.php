@@ -4,7 +4,7 @@
 
 @section('content')
 	<h1>Sistema para modificar combi</h1>
-
+@include('partials.errorVal')
 	<form method="POST" action="{{ route('administracionCombis.update', $combi) }}">
 		@csrf @method('PATCH')
 		<label>Modelo: </label><input type="string" name="model" value="{{old('model', $combi->model)}}"><br>
