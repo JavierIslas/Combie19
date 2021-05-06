@@ -4,7 +4,7 @@
 
 @section('content')
 	<h1>Sistema de alta para una nueva combi</h1>
-@include('partials.errorVal')
+
 	<form method="POST" action="{{ route('administracionCombis.store') }}">
 		@csrf
 		<label>Modelo: </label><input type="string" name="model" value="{{old('model', $combi->model)}}"><br>

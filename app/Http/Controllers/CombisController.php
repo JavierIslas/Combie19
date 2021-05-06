@@ -32,8 +32,7 @@ class CombisController extends Controller
     {
 
         $choferes = Chofer::get();
-        return view('Combis.create',compact('choferes'),[
-               'combi' => new Combi]);
+        return view('Combis.create',compact('choferes'),['combi' => new Combi]);
     }
 
     /**
@@ -58,9 +57,9 @@ class CombisController extends Controller
      */
     public function show($id)
     {
-        $choferes = Chofer::get();
+       // $choferes = Chofer::get();
         $combi= Combi::find($id);
-        return view('Combis.show',['combi' => Combi::findOrFail($id)], compact('choferes'));
+        return view('Combis.show',['combi' => Combi::findOrFail($id)],['choferDeCombi' => Chofer::find($combi->chofer_id)]);
     }
 
     /**
@@ -86,8 +85,15 @@ class CombisController extends Controller
     {
         
         $combi= Combi::find($id);
-        $combi -> update($request -> validated());
-        return view('Combis.show',['combi' => Combi::findOrFail($combi->id)]);
+        $combi -> update($request -> validate ([
+             'model' => 'required|max:255',
+             'patente' => ' required|max:8|min:6|unique:combis,patente,'.$id,
+             'asientos' =>'required|Integer|Min:10|Max:25',
+             'chofer_id'=>'required',
+             'tipo'=>'required']));
+
+        return view('Combis.show',['combi' => Combi::findOrFail($combi->id),
+                                   'choferDeCombi' => Chofer::find($combi->chofer_id)]);
         
     }
 
