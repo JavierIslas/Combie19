@@ -30,6 +30,7 @@ class altaChoferRequest extends FormRequest
             'password' => 'required',
             'phone' => 'required',
             'birthday' => 'required',
+            'extra' => 'required',
         ];
     }
 }
