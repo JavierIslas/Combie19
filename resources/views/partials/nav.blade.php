@@ -10,5 +10,7 @@
 
 		<li class= "{{setActive('administracionCombis*')}}"><a href="{{route('administracionCombis')}}">@lang('Administracion de Combis')</a></li>
 
+		<li class= "{{setActive('aministracionLocaciones*')}}"><a href="{{route('administracionLocaciones')}}">@lang('Administracion de Locaciones')</a></li>
+
 	</ul>
 </nav>

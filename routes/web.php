@@ -3,6 +3,7 @@
 use App\Http\Controllers\ChoferController;
 use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\CombisController;
+use App\Http\Controllers\LocacionesController;
 
 Route::view('/', 'home')->name('home');
 Route::view('/about', 'about')->name('about');
@@ -20,3 +21,8 @@ Route::post('contact', [MessagesController::class, 'store']);
 
 Route::get('/administracionCombis', [CombisController::class, 'index'])->name('administracionCombis');
 Route::resource('/administracionCombis','CombisController')->except(['index']);
+
+Route::get('/administracionLocaciones', [LocacionesController::class, 'index'])->name('administracionLocaciones');
+Route::resource('/administracionLocaciones','LocacionesController')->except(['index']);
+
+
