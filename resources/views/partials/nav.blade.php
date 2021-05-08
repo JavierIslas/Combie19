@@ -12,5 +12,15 @@
 
 		<li class= "{{setActive('aministracionLocaciones*')}}"><a href="{{route('administracionLocaciones')}}">@lang('Administracion de Locaciones')</a></li>
 
+		@guest
+			<li><a href="{{route('login')}}">@lang('Iniciar Sesion')</a></li>
+		@else
+			<li><a href="{{route('login')}}">{{auth()->user()->name}}</a></li>
+			<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+               	@csrf
+               	<li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">@lang('Cerrar Sesion')</a></li>
+            </form>
+		@endguest
+
 	</ul>
 </nav>

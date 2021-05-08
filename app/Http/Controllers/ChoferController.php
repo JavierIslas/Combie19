@@ -8,8 +8,6 @@ use App\Models\Chofer;
 
 use App\Http\Requests\altaChoferRequest;
 
-use Illuminate\Database\QueryException;
-
 class ChoferController extends Controller
 {
     /**

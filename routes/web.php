@@ -25,8 +25,4 @@ Route::resource('/administracionCombis','CombisController')->except(['index']);
 Route::get('/administracionLocaciones', [LocacionesController::class, 'index'])->name('administracionLocaciones');
 Route::resource('/administracionLocaciones','LocacionesController')->except(['index']);
 
-
-
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
