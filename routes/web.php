@@ -26,3 +26,7 @@ Route::get('/administracionLocaciones', [LocacionesController::class, 'index'])-
 Route::resource('/administracionLocaciones','LocacionesController')->except(['index']);
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
