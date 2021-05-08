@@ -8,6 +8,8 @@ use App\Models\Chofer;
 
 use App\Http\Requests\altaChoferRequest;
 
+use Illuminate\Database\QueryException;
+
 class ChoferController extends Controller
 {
     /**
@@ -31,10 +33,8 @@ class ChoferController extends Controller
     }
 
     public function store(altaChoferRequest $validacion){
-        
         Chofer::create($validacion->validated());
-
-        return redirect()->route('Choferes');
+        return redirect()->route('Choferes')->with('status', __('Chofer dado de alta satifactoriamente.'));       
     }
 
     public function edit($id){
@@ -45,12 +45,12 @@ class ChoferController extends Controller
         $conductor = Chofer::findOrFail($id);
         $conductor->update($validacion->validated());
 
-        return redirect()->route('Choferes.show', $id);
+        return redirect()->route('Choferes.show', $id)->with('status', __('Chofer actualizado correctamente.'));
     }
 
     public function destroy($id){
        Chofer::destroy($id);
-       return redirect()->route('Choferes');
+       return redirect()->route('Choferes')->with('status', __('Chofer eliminado correctamente.'));
     }
 
    }
