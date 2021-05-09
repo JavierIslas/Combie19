@@ -4,8 +4,16 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 use App\Models\Locacion;
+
+
+ try { 
+     //Your code
+    } catch(QueryException $ex){ 
+      dd($ex->getMessage()); 
+    }
 
 class LocacionesController extends Controller
 {
@@ -38,11 +46,17 @@ class LocacionesController extends Controller
      */
     public function store(Request $request)
     {
-        Locacion::create( $request -> validate ([
+        
+        try { 
+        Locacion::create( $request -> validate([
              'ciudad' => 'required|String',
              'provincia' => 'required|String',
              ]));
         return redirect()->route('administracionLocaciones');
+        } catch(QueryException $ex){ 
+            echo "ERROR: La ciudad ya fue ingresada a la base de datos";
+        }
+        
     }
 
     /**
@@ -53,7 +67,6 @@ class LocacionesController extends Controller
      */
     public function show($id)
     {
-
         return view('Locaciones.show',['locacion' => Locacion::findOrFail($id)]);
     }
 
@@ -78,13 +91,19 @@ class LocacionesController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        try { 
         $locacion= Locacion::find($id);
         $locacion -> update( $request -> validate ([
-             'ciudad' => 'required|String|'
-             'provincia' => 'required|String',
+             'ciudad' => 'required|String',
+             'provincia' => 'required|String'
              ]));
 
         return view('Locaciones.show',['locacion' => Locacion::findOrFail($id)]);
+        } catch(QueryException $ex){ 
+            dd($ex->getMessage()); 
+        }
+        
     }
 
     /**

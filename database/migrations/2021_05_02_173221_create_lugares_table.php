@@ -18,6 +18,7 @@ class CreateLugaresTable extends Migration
             $table->string('ciudad');
             $table->string('provincia');
             $table->timestamps();
+            $table->unique(['ciudad', 'provincia'],'indiceCiudad-Provincia');
         });
     }
 
