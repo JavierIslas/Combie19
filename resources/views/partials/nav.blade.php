@@ -1,4 +1,8 @@
-<nav>
+<nav class="navbar bg-teal shadow-sm">
+	<a href="{{ route('home') }}">
+		{{ config('app.name') }}
+	</a>
+
 	<ul>
 		<li class= "{{setActive('home')}}"><a href="{{route('home')}}">@lang('Pagina Principal')</a></li>
 
@@ -11,6 +15,8 @@
 		<li class= "{{setActive('administracionCombis*')}}"><a href="{{route('administracionCombis')}}">@lang('Administracion de Combis')</a></li>
 
 		<li class= "{{setActive('aministracionLocaciones*')}}"><a href="{{route('administracionLocaciones')}}">@lang('Administracion de Locaciones')</a></li>
+
+		<li class= "{{setActive('aministracionRutas*')}}"><a href="{{route('administracionRutas')}}">@lang('Administracion de Rutas')</a></li>
 
 		@guest
 			<li><a href="{{route('login')}}">@lang('Iniciar Sesion')</a></li>
