@@ -65,7 +65,7 @@ class LocacionesController extends Controller
      */
     public function edit($id)
     {
-          
+
         return view('Locaciones.edit',['locacion' => Locacion::findOrFail($id)]);
     }
 
@@ -80,7 +80,7 @@ class LocacionesController extends Controller
     {
         $locacion= Locacion::find($id);
         $locacion -> update( $request -> validate ([
-             'ciudad' => 'required|String|'
+             'ciudad' => 'required|String',
              'provincia' => 'required|String',
              ]));
 

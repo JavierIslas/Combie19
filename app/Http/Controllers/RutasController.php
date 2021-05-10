@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Ruta;
+use App\Models\Locacion;
+use App\Models\Combi;
 
 class RutasController extends Controller
 {
@@ -26,7 +28,9 @@ class RutasController extends Controller
      */
     public function create()
     {
-        return view('Rutas.create',['ruta' => new Ruta]);
+        $lugares = Locacion::get();
+        $combis = Combi::get();
+        return view('Rutas.create',compact('lugares','combis'),['ruta' => new Ruta]);
     }
 
     /**
@@ -38,11 +42,11 @@ class RutasController extends Controller
     public function store(Request $request)
     {
         Ruta::create( $request -> validate ([
-             'origen' => 'required|Int',
-             'destino' => 'required|Int',
+             'origen' => 'required|Int|different:destino',
+             'destino' => 'required|Int|different:origen',
              'combie_id' => 'required|Int',
-             'duracion' => 'required|DateTime',
-             'distancia' => 'required|Double',
+             'duracion' => 'required|date_format:H:i',
+             'distancia' => 'required|numeric|Min:1|Max:10000',
              ]));
         return redirect()->route('administracionRutas');
     }
@@ -66,7 +70,10 @@ class RutasController extends Controller
      */
     public function edit($id)
     {
-        return view('Rutas.edit',['ruta' => Ruta::findOrFail($id)]);
+
+        $lugares = Locacion::get();
+        $combis = Combi::get();
+        return view('Rutas.edit',compact('lugares','combis'),['ruta' => Ruta::findOrFail($id)]);
     }
 
     /**
@@ -80,11 +87,11 @@ class RutasController extends Controller
     {
         $ruta= Ruta::find($id);
         $ruta -> update( $request -> validate ([
-             'origen' => 'required|Int',
-             'destino' => 'required|Int',
+             'origen' => 'required|Int|different:destino',
+             'destino' => 'required|Int|different:origen',
              'combie_id' => 'required|Int',
-             'duracion' => 'date_format:H:i',
-             'distancia' => 'required|Double',
+             'duracion' => 'required|date_format:H:i',
+             'distancia' => 'required|numeric|Min:1|Max:10000',
              ]));
 
         return view('Rutas.show',['ruta' => Ruta::findOrFail($id)]);
