@@ -13,5 +13,5 @@
 		@csrf @method('DELETE')
 		<button>Eliminar</button>
 	</form>
-	
+
 @endsection

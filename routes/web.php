@@ -4,6 +4,7 @@ use App\Http\Controllers\ChoferController;
 use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\CombisController;
 use App\Http\Controllers\LocacionesController;
+use App\Http\Controllers\RutasController;
 
 Route::view('/', 'home')->name('home');
 Route::view('/about', 'about')->name('about');
@@ -24,5 +25,8 @@ Route::resource('/administracionCombis','CombisController')->except(['index']);
 
 Route::get('/administracionLocaciones', [LocacionesController::class, 'index'])->name('administracionLocaciones');
 Route::resource('/administracionLocaciones','LocacionesController')->except(['index']);
+
+Route::get('/administracionRutas', [RutasController::class, 'index'])->name('administracionRutas');
+Route::resource('/administracionRutas','RutasController')->except(['index']);
 
 Auth::routes();

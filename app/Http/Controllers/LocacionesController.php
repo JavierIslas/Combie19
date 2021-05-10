@@ -78,7 +78,7 @@ class LocacionesController extends Controller
      */
     public function edit($id)
     {
-          
+
         return view('Locaciones.edit',['locacion' => Locacion::findOrFail($id)]);
     }
 

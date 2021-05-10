@@ -1,4 +1,4 @@
-@extends('Layout')
+@extends('Layouts.app')
 
 @section('title', 'Modificar de Combi')
 
@@ -21,7 +21,7 @@
 			<option value="comoda">Comoda</option>
 			<option value="super-comoda">Super-Comoda</option>
 		</select><br>
- 
+
  		<label>Chofer asignado:</label>
 		<select name="chofer_id" value="{{old('chofer_id',$combi->chofer_id)}}">
         	@foreach ($choferes as $chofer)
