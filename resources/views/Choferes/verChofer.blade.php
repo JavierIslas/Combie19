@@ -1,4 +1,4 @@
-@extends('Layout')
+@extends('Layouts.app')
 
 @section('title', $chofer->last_name)
 
@@ -13,5 +13,5 @@
 		@csrf @method('DELETE')
 		<button>Eliminar</button>
 	</form>
-	
+
 @endsection

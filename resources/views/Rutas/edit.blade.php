@@ -1,4 +1,4 @@
-@extends('Layout')
+@extends('Layouts.app')
 
 @section('title', 'Edicion de Ruta')
 

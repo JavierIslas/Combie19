@@ -1,4 +1,4 @@
-@extends('Layout')
+@extends('Layouts.app')
 
 @section('title','Patente :'. $combi->patente)
 

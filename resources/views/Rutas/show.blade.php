@@ -1,4 +1,4 @@
-@extends('Layout')
+@extends('Layouts.app')
 
 @section('title','Ruta :'. $ruta->combie_id . $ruta->duracion . $ruta->distancia)
 
