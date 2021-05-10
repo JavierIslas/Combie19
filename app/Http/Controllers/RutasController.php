@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 
-use App\Models\Locacion;
+use App\Models\Ruta;
 
-class LocacionesController extends Controller
+class RutasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class LocacionesController extends Controller
      */
     public function index()
     {
-       $locaciones = Locacion::get();
-       return view('Locaciones.index',compact('locaciones'));
+        $rutas = Ruta::get();
+        return view('Rutas.index',compact('rutas'));
     }
 
     /**
@@ -27,7 +26,7 @@ class LocacionesController extends Controller
      */
     public function create()
     {
-        return view('Locaciones.create',['locacion' => new Locacion]);
+        return view('Rutas.create',['ruta' => new Ruta]);
     }
 
     /**
@@ -38,11 +37,14 @@ class LocacionesController extends Controller
      */
     public function store(Request $request)
     {
-        Locacion::create( $request -> validate ([
-             'ciudad' => 'required|String',
-             'provincia' => 'required|String',
+        Ruta::create( $request -> validate ([
+             'origen' => 'required|Int',
+             'destino' => 'required|Int',
+             'combie_id' => 'required|Int',
+             'duracion' => 'required|DateTime',
+             'distancia' => 'required|Double',
              ]));
-        return redirect()->route('administracionLocaciones');
+        return redirect()->route('administracionRutas');
     }
 
     /**
@@ -53,8 +55,7 @@ class LocacionesController extends Controller
      */
     public function show($id)
     {
-
-        return view('Locaciones.show',['locacion' => Locacion::findOrFail($id)]);
+        return view('Rutas.show',['ruta' => Ruta::findOrFail($id)]);
     }
 
     /**
@@ -65,8 +66,7 @@ class LocacionesController extends Controller
      */
     public function edit($id)
     {
-
-        return view('Locaciones.edit',['locacion' => Locacion::findOrFail($id)]);
+        return view('Rutas.edit',['ruta' => Ruta::findOrFail($id)]);
     }
 
     /**
@@ -78,13 +78,16 @@ class LocacionesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $locacion= Locacion::find($id);
-        $locacion -> update( $request -> validate ([
-             'ciudad' => 'required|String|',
-             'provincia' => 'required|String',
+        $ruta= Ruta::find($id);
+        $ruta -> update( $request -> validate ([
+             'origen' => 'required|Int',
+             'destino' => 'required|Int',
+             'combie_id' => 'required|Int',
+             'duracion' => 'date_format:H:i',
+             'distancia' => 'required|Double',
              ]));
 
-        return view('Locaciones.show',['locacion' => Locacion::findOrFail($id)]);
+        return view('Rutas.show',['ruta' => Ruta::findOrFail($id)]);
     }
 
     /**
@@ -95,7 +98,7 @@ class LocacionesController extends Controller
      */
     public function destroy($id)
     {
-        Locacion::destroy($id);
-       return redirect()->route('administracionLocaciones');
+        Ruta::destroy($id);
+        return redirect()->route('administracionRutas');
     }
 }
