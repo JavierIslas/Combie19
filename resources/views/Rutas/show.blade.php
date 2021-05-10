@@ -1,16 +1,16 @@
 @extends('Layout')
 
-@section('title','Ruta :'. $ruta->origen . $ruta->destino . $ruta->combie_id . $ruta->duracion . $ruta->distancia)
+@section('title','Ruta :'. $ruta->combie_id . $ruta->duracion . $ruta->distancia)
 
 @section('content')
 
 </form>
 	<div>
-		<p>{{ 'Origen: '.$ruta -> origen}}</p>
-		<p>{{ 'Destino: '.$ruta -> destino}}</p>
-		<p>{{ 'combie_id: '.$ruta -> combie_id}}</p>
+		<p>{{ 'Origen: '.$lugarOrigen->provincia . ' - ' .$lugarOrigen->ciudad}}</p>
+		<p>{{ 'Destino: '.$lugarDestino->provincia . ' - ' .$lugarDestino->ciudad}}</p>
+		<p>{{ 'Combi (Patente - Conductor): '.$combi->patente . ' - ' .$choferDeCombi->last_name . ', ' .$choferDeCombi->name}}</p>
 		<p>{{ 'Duracion: '.$ruta -> duracion}}</p>
-		<p>{{ 'Distancia: '.$ruta -> distancia}}</p>
+		<p>{{ 'Distancia: '.$ruta -> distancia . ' Kms'}}</p>
 		<p>{{ 'Dada de alta el: '.$ruta -> created_at}}</p>
 		<p>{{ 'Ultima actualizacion: '.$ruta -> updated_at}}</p>
 	</div>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Ruta;
 use App\Models\Locacion;
 use App\Models\Combi;
+use App\Models\Chofer;
 
 class RutasController extends Controller
 {
@@ -59,7 +60,9 @@ class RutasController extends Controller
      */
     public function show($id)
     {
-        return view('Rutas.show',['ruta' => Ruta::findOrFail($id)]);
+        $ruta = Ruta::find($id);
+        $combi = Combi::find($ruta->combie_id);
+        return view('Rutas.show',['ruta' => Ruta::findOrFail($id)],['lugarOrigen' => Locacion::find($ruta->origen),'lugarDestino' => Locacion::find($ruta->destino),'combi' => Combi::find($ruta->combie_id),'choferDeCombi' => Chofer::find($combi->chofer_id)]);
     }
 
     /**
