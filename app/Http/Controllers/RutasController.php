@@ -89,15 +89,16 @@ class RutasController extends Controller
     public function update(Request $request, $id)
     {
         $ruta= Ruta::find($id);
+        $combi = Combi::find($ruta->combie_id);
         $ruta -> update( $request -> validate ([
              'origen' => 'required|Int|different:destino',
              'destino' => 'required|Int|different:origen',
              'combie_id' => 'required|Int',
-             'duracion' => 'required|date_format:H:i',
+             'duracion' => 'required|date_format:H:i:s',
              'distancia' => 'required|numeric|Min:1|Max:10000',
              ]));
 
-        return view('Rutas.show',['ruta' => Ruta::findOrFail($id)]);
+        return view('Rutas.show',['ruta' => Ruta::findOrFail($id),'lugarOrigen' => Locacion::find($ruta->origen),'lugarDestino' => Locacion::find($ruta->destino),'combi' => Combi::find($ruta->combie_id),'choferDeCombi' => Chofer::find($combi->chofer_id)]);
     }
 
     /**

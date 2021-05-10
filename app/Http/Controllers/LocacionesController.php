@@ -9,12 +9,6 @@ use Illuminate\Database\QueryException;
 use App\Models\Locacion;
 
 
- try { 
-     //Your code
-    } catch(QueryException $ex){ 
-      dd($ex->getMessage()); 
-    }
-
 class LocacionesController extends Controller
 {
     /**
@@ -46,17 +40,17 @@ class LocacionesController extends Controller
      */
     public function store(Request $request)
     {
-        
-        try { 
+
+        try {
         Locacion::create( $request -> validate([
              'ciudad' => 'required|String',
              'provincia' => 'required|String',
              ]));
         return redirect()->route('administracionLocaciones');
-        } catch(QueryException $ex){ 
+        } catch(QueryException $ex){
             echo "ERROR: La ciudad ya fue ingresada a la base de datos";
         }
-        
+
     }
 
     /**
@@ -92,7 +86,7 @@ class LocacionesController extends Controller
     public function update(Request $request, $id)
     {
 
-        try { 
+        try {
         $locacion= Locacion::find($id);
         $locacion -> update( $request -> validate ([
              'ciudad' => 'required|String',
@@ -100,10 +94,10 @@ class LocacionesController extends Controller
              ]));
 
         return view('Locaciones.show',['locacion' => Locacion::findOrFail($id)]);
-        } catch(QueryException $ex){ 
-            dd($ex->getMessage()); 
+        } catch(QueryException $ex){
+            dd($ex->getMessage());
         }
-        
+
     }
 
     /**
