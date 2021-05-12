@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 use App\Models\Chofer;
+use App\Models\Combi;
 
 use App\Http\Requests\altaChoferRequest;
 
@@ -47,8 +49,12 @@ class ChoferController extends Controller
     }
 
     public function destroy($id){
-       Chofer::destroy($id);
-       return redirect()->route('Choferes')->with('status', __('Chofer eliminado correctamente.'));
+        try {
+            Chofer::destroy($id);
+            return redirect()->route('Choferes')->with('status', __('Chofer eliminado correctamente.'));
+        } catch(QueryException $ex){
+            return redirect()->route('Choferes.show', $id)->with('status', __('No se  puede eliminar, Chofer asignado a una combi.'));
+        }
     }
 
    }

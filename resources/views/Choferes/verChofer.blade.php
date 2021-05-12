@@ -4,6 +4,7 @@
 
 @section('content')
 	<h1>{{ $chofer->last_name }}, {{ $chofer->name }}</h1>
+	@include('partials.session-status')  <! -- hay que agragrlo para que muestre el mensaje -->
 	<a href="{{route('Choferes.editar', $chofer)}}">Editar Conductor</a><br>
 	<ul>
 		<li>{{ $chofer->email }}</li>

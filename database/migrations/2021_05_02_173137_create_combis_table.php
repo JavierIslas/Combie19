@@ -20,7 +20,7 @@ class CreateCombisTable extends Migration
             $table->integer('asientos')->unsigned();
             $table->string('tipo');
             $table->bigInteger('chofer_id')->unsigned();
-            $table->foreign('chofer_id')->references('id')->on('choferes');
+            $table->foreign('chofer_id')->references('id')->on('choferes')->onDelete('restrict'); //rompe el codigo cuando se intenta borrar en la otra tabla. usar try/catch
             $table->timestamps();
         });
     }
