@@ -26,7 +26,7 @@ class altaChoferRequest extends FormRequest
         return [
             'last_name' => 'required',
             'name' => 'required',
-            'email' => 'required|unique:choferes,email',
+            'email' => 'required|unique:choferes,email'.$this->id, //ERROR
             'password' => 'required',
             'phone' => 'required',
             'birthday' => 'required',
