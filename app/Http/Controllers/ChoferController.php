@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Hash;
 
+use App\Models\User;
 use App\Models\Chofer;
 use App\Models\Combi;
 
@@ -33,6 +35,17 @@ class ChoferController extends Controller
     }
 
     public function store(altaChoferRequest $validacion){
+        try{
+            User::create([
+                'name' => $validacion->name." ".$validacion->last_name,
+                'email' => $validacion->email,
+                'password' => Hash::make($validacion->password),
+                'phone' => $validacion->phone,
+                'birthday' => $validacion->birthday,
+            ]);
+        } catch(QueryException $ex){
+            return redirect()->route('Choferes')->with('status', __('El mail pertenece a un usuario registrado.'));
+        }
         Chofer::create($validacion->validated());
         return redirect()->route('Choferes')->with('status', __('Chofer dado de alta satifactoriamente.'));       
     }
@@ -56,5 +69,4 @@ class ChoferController extends Controller
             return redirect()->route('Choferes.show', $id)->with('status', __('No se  puede eliminar, Chofer asignado a una combi.'));
         }
     }
-
-   }
+}
