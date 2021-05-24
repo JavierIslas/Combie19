@@ -3,7 +3,9 @@
 @section('title','Patente :'. $combi->patente)
 
 @section('content')
-<a href="{{route('administracionCombis.edit', $combi)}}">Editar combi</a>
+<a href="{{route('administracionCombis.edit', $combi)}}">Modificar combi</a>
+<br>
+@include('partials.session-status')
 <form method="POST" action="{{route('administracionCombis.destroy',$combi)}}">
 	@csrf @method('DELETE')
 	<button>Eliminar</button>

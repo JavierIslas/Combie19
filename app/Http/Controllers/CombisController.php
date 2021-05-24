@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 use App\Models\Combi;
 use App\Models\Chofer;
@@ -43,9 +44,13 @@ class CombisController extends Controller
      */
     public function store(SaveCombiRequest $request)
     {
+        try {
+            Combi::create($request->validated());
+            return redirect()->route('administracionCombis')->with('status', __('Combi dada de alta satisfactoriamente'));
+        } catch (QueryException $e) {
+            return redirect()->route('administracionCombis.create')->with('status', __('Error: La patente ya se encuentra registrada en la base de datos'));
+        }
         
-        Combi::create($request->validated());
-        return redirect()->route('administracionCombis');
         
     }
 
@@ -83,17 +88,14 @@ class CombisController extends Controller
      */
     public function update(SaveCombiRequest $request, $id)
     {
+        try {
+            $combi= Combi::find($id);
+            $combi -> update($request -> validated());
+            return redirect()->route('administracionCombis.show',$id)->with('status', __('Combi actualizada.'));
+        } catch (QueryException $e) {
+            return redirect()->route('administracionCombis.edit',$id)->with('status', __('Error: La patente ya se encuentra registrada en la base de datos'));
+        }
         
-        $combi= Combi::find($id);
-        $combi -> update($request -> validate ([
-             'model' => 'required|max:255',
-             'patente' => ' required|max:8|min:6|unique:combis,patente,'.$id,
-             'asientos' =>'required|Integer|Min:10|Max:25',
-             'chofer_id'=>'required',
-             'tipo'=>'required']));
-
-        return view('Combis.show',['combi' => Combi::findOrFail($combi->id),
-                                   'choferDeCombi' => Chofer::find($combi->chofer_id)]);
         
     }
 
@@ -105,7 +107,15 @@ class CombisController extends Controller
      */
     public function destroy($id)
     {
-       Combi::destroy($id);
-       return redirect()->route('administracionCombis');
+
+       try {
+            Combi::destroy($id);
+            return redirect()->route('administracionCombis')->with('status', __('Combi eliminada correctamente'));
+       } catch(QueryException $ex){
+            return redirect()->route('administracionCombis.show', $id)->with('status', __('No se puede eliminar la combi ya que esta asignada a una ruta'));
+        }
+        
+            
+
     }
 }

@@ -3,7 +3,9 @@
 @section('title','Locacion :'. $locacion->ciudad . $locacion->provincia)
 
 @section('content')
-<a href="{{route('administracionLocaciones.edit', $locacion)}}">locacionEditar locacion</a>
+<a href="{{route('administracionLocaciones.edit', $locacion)}}">Modificar locacion</a>
+<br>
+@include('partials.session-status')
 <form method="POST" action="{{route('administracionLocaciones.destroy',$locacion)}}">
 	@csrf @method('DELETE')
 	<button>Eliminar</button>

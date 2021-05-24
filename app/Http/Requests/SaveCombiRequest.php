@@ -25,8 +25,8 @@ class SaveCombiRequest extends FormRequest
     {
         return [
         'model' => 'required|max:255',
-        'patente' => 'required|max:8|min:6|unique:combis,patente',
-        'asientos' =>'required',
+        'patente' => 'required|max:8|min:6',
+        'asientos' =>'required|Int|max:30|min:10',
         'chofer_id'=>'required',
         'tipo'=>'required',
         ];

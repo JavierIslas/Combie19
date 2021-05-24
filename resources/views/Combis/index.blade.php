@@ -5,6 +5,8 @@
 @section('content')
 	<h1>En esta pestaña se podrán dar de alta, modificar y consultar la informacion <br> de las combis de la empresa</h1>
 	<a href="{{ route('administracionCombis.create') }}">Dar de alta nueva combi</a>
+	<br>
+	@include('partials.session-status')
 	<h3>Combi id  - Modelo   -  Patente</h3>
     <ul>
 		@forelse($combis as $combiItem)

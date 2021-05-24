@@ -5,6 +5,8 @@
 @section('content')
 	<h1>Aca se podra dar de alta, modificar y consultar la informacion <br> de todos las locaciones de maneja la empresa</h1>
 	<a href="{{ route('administracionLocaciones.create') }}">Dar de alta Locacion</a>
+	<br>
+	@include('partials.session-status')
 	<ul>
 		@forelse($locaciones as $locacionesItem)
 			<li><a href="{{ route('administracionLocaciones.show', $locacionesItem) }}">{{ $locacionesItem->ciudad }} , {{ $locacionesItem->provincia }}</a></li>

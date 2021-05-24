@@ -4,6 +4,8 @@
 
 @section('content')
 	<h1>Sistema de alta de nueva Locacion </h1>
+<br>
+@include('partials.session-status')
 @include('partials.errorVal')
 	<form method="POST" action="{{ route('administracionLocaciones.store') }}">
 	@include('Locaciones._formularioLocaciones', ['btnText' => 'Dar de Alta'])

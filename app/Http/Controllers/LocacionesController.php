@@ -48,7 +48,7 @@ class LocacionesController extends Controller
              ]));
         return redirect()->route('administracionLocaciones');
         } catch(QueryException $ex){
-            echo "ERROR: La ciudad ya fue ingresada a la base de datos";
+           return redirect()->route('administracionLocaciones.create',$request)->with('status',__('ERROR: La ciudad ya se encuentra en la base de datos'));
         }
 
     }
@@ -93,9 +93,11 @@ class LocacionesController extends Controller
              'provincia' => 'required|String'
              ]));
 
-        return view('Locaciones.show',['locacion' => Locacion::findOrFail($id)]);
+        return redirect()->route('administracionLocaciones.show', $id)->with('status', __('Locacion actualizada exitosamente'));
+
         } catch(QueryException $ex){
-            dd($ex->getMessage());
+        
+        return redirect()->route('administracionLocaciones.edit',$id)->with('status',__('Error: Ya existe una ciudad para esa provincia en la base de datos'));
         }
 
     }
@@ -108,7 +110,11 @@ class LocacionesController extends Controller
      */
     public function destroy($id)
     {
-        Locacion::destroy($id);
-       return redirect()->route('administracionLocaciones');
+       try {
+           Locacion::destroy($id);
+           return redirect()->route('administracionLocaciones')->with('status', __('Locación eliminada satisfactoriamente.'));
+       } catch (QueryException $e) {
+           return redirect()->route('administracionLocaciones.show', $id)->with('status', __('La locación no puede ser eliminada ya que esta asignada a una ruta.'));
+       }
     }
 }

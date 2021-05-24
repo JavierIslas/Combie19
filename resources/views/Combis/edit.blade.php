@@ -4,6 +4,8 @@
 
 @section('content')
 	<h1>Sistema para modificar combi</h1>
+<br>
+@include('partials.session-status')
 @include('partials.errorVal')
 	<form method="POST" action="{{ route('administracionCombis.update', $combi) }}">
 		@csrf @method('PATCH')
