@@ -18,6 +18,11 @@
 
 		<li class= "{{setActive('aministracionRutas*')}}"><a href="{{route('administracionRutas')}}">@lang('Administracion de Rutas')</a></li>
 
+		<li class= "{{setActive('aministracionViajes*')}}"><a href="{{route('administracionViajes.index')}}">@lang('Administracion de Viajes')</a></li>
+
+		<li class= "{{setActive('administracionInsumos*')}}"><a href="{{route('administracionInsumos.index')}}">@lang('Administracion de Insumos')</a></li>
+
+
 		@guest
 			<li><a href="{{route('login')}}">@lang('Iniciar Sesion')</a></li>
 		@else

@@ -30,3 +30,6 @@ Route::get('/administracionRutas', [RutasController::class, 'index'])->name('adm
 Route::resource('/administracionRutas','RutasController')->except(['index']);
 
 Auth::routes();
+
+Route::resource('/administracionViajes', 'ViajesController');
+Route::resource('/administracionInsumos','InsumosController');
