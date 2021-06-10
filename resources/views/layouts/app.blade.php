@@ -47,13 +47,13 @@
                             <li class= "{{setActive('contact')}}"><a href="{{route('contact')}}">@lang('Informacion de Contacto')</a></li>
                         @endif
                         @if (User::isAdmin())
-                            <li class= "{{setActive('Choferes*')}}"><a href="{{route('Choferes')}}">@lang('Administracion de Choferes')</a></li>
+                            <li class= "{{setActive('Choferes')}}"><a href="{{route('Choferes')}}">@lang('Administracion de Choferes')</a></li>
 
-                            <li class= "{{setActive('administracionCombis*')}}"><a href="{{route('administracionCombis')}}">@lang('Administracion de Combis')</a></li>
+                            <li class= "{{setActive('administracionCombis')}}"><a href="{{route('administracionCombis')}}">@lang('Administracion de Combis')</a></li>
 
-                            <li class= "{{setActive('aministracionLocaciones*')}}"><a href="{{route('administracionLocaciones')}}">@lang('Administracion de Locaciones')</a></li>
+                            <li class= "{{setActive('aministracionLocaciones')}}"><a href="{{route('administracionLocaciones')}}">@lang('Administracion de Locaciones')</a></li>
 
-                            <li class= "{{setActive('aministracionRutas*')}}"><a href="{{route('administracionRutas')}}">@lang('Administracion de Rutas')</a>
+                            <li class= "{{setActive('aministracionRutas')}}"><a href="{{route('administracionRutas')}}">@lang('Administracion de Rutas')</a>
                             </li>
                         @endif
                         @if (User::isDriver())
@@ -62,7 +62,6 @@
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}</a>
-
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -74,7 +73,7 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') sss}}</a>
                                 </li>
                         @endif
 

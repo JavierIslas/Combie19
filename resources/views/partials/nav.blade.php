@@ -8,15 +8,20 @@
 
 		<li class= "{{setActive('about')}}"><a href="{{route('about')}}">@lang('Acerca de Nosotros')</a></li>
 
-		<li class= "{{setActive('Choferes*')}}"><a href="{{route('Choferes')}}">@lang('Administracion de Choferes')</a></li>
+		<li class= "{{setActive('Choferes')}}"><a href="{{route('Choferes')}}">@lang('Administracion de Choferes')</a></li>
 
 		<li class= "{{setActive('contact')}}"><a href="{{route('contact')}}">@lang('Informacion de Contacto')</a></li>
 
-		<li class= "{{setActive('administracionCombis*')}}"><a href="{{route('administracionCombis')}}">@lang('Administracion de Combis')</a></li>
+		<li class= "{{setActive('administracionCombis')}}"><a href="{{route('administracionCombis')}}">@lang('Administracion de Combis')</a></li>
 
-		<li class= "{{setActive('aministracionLocaciones*')}}"><a href="{{route('administracionLocaciones')}}">@lang('Administracion de Locaciones')</a></li>
+		<li class= "{{setActive('aministracionLocaciones')}}"><a href="{{route('administracionLocaciones')}}">@lang('Administracion de Locaciones')</a></li>
 
-		<li class= "{{setActive('aministracionRutas*')}}"><a href="{{route('administracionRutas')}}">@lang('Administracion de Rutas')</a></li>
+		<li class= "{{setActive('aministracionRutas')}}"><a href="{{route('administracionRutas')}}">@lang('Administracion de Rutas')</a></li>
+
+		<li class= "{{setActive('aministracionViajes')}}"><a href="{{route('administracionViajes.index')}}">@lang('Administracion de Viajes')</a></li>
+
+		<li class= "{{setActive('administracionInsumos')}}"><a href="{{route('administracionInsumos.index')}}">@lang('Administracion de Insumos')</a></li>
+
 
 		@guest
 			<li><a href="{{route('login')}}">@lang('Iniciar Sesion')</a></li>
