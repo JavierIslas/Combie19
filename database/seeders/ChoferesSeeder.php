@@ -38,6 +38,7 @@ class ChoferesSeeder extends Seeder
             'phone' => '1805-7044',
             'birthday' => $fecha,
             'extra' => Str::random(20),
+
         ]);
         DB::table('users')->insert([
             'name' => 'Alvarez, Roberto Cristian',
@@ -45,6 +46,7 @@ class ChoferesSeeder extends Seeder
             'password' => $pass,
             'phone' => '1805-7044',
             'birthday' => $fecha,
+            'gold' => 2,
         ]);
 
         $fecha = ChoferesSeeder::rand_date();

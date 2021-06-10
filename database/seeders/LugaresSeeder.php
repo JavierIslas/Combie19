@@ -20,293 +20,318 @@ class LugaresSeeder extends Seeder
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Azul',
+            'provincia' => 'Buenos Aires',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Bahia Blanca',
+            'provincia' => 'Buenos Aires',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Bariloche',
+            'provincia' => 'Rio Negro',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Chivilcoy',
+            'provincia' => 'Buenos Aires',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Ciudad de Corrientes',
+            'provincia' => 'Corrientes',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Ciudad de Santa Fe',
+            'provincia' => 'Santa Fe',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Clorinda',
+            'provincia' => 'Formosa',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Comodoro Rivadavia',
+            'provincia' => 'Chubut',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Dellepiane',
+            'provincia' => 'CABA',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'El Calafate',
+            'provincia' => 'Santa Cruz',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'El Talar (Pacheco)',
+            'provincia' => 'Buenos Aires',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Esquel',
+            'provincia' => 'Chubut',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Formosa',
+            'provincia' => 'Formosa',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'General Pico',
+            'provincia' => 'La Pampa',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Gualeguaychu',
+            'provincia' => 'Entre Rios',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Güemes',
+            'provincia' => 'Salta',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Junin',
+            'provincia' => 'Buenos Aires',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'La Falda',
+            'provincia' => 'Cordoba',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'La Quiaca',
+            'provincia' => 'Jujuy',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'La Rioja',
+            'provincia' => 'La Rioja',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Liniers',
+            'provincia' => 'CABA',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Mar de Ajo',
+            'provincia' => 'Buenos Aires',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Mar del Plata',
+            'provincia' => 'Buenos Aires',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Mendoza',
+            'provincia' => 'Mendoza',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Mina Clavero',
+            'provincia' => 'Cordoba',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Necochea',
+            'provincia' => 'Buenos Aires',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Neuquen',
+            'provincia' => 'Neuquen',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Obera',
+            'provincia' => 'Misiones',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Olavarria',
+            'provincia' => 'Buenos Aires',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Parana',
+            'provincia' => 'Entre Rios',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Paso de los Libres',
+            'provincia' => 'Corrientes',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Pehuajo',
+            'provincia' => 'Buenos Aires',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Pergamino',
+            'provincia' => 'Buenos Aires',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Pinamar',
+            'provincia' => 'Buenos Aires',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Posadas',
+            'provincia' => 'Misiones',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Puerto Iguazu',
+            'provincia' => 'Misiones',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Puerto Madryd',
+            'provincia' => 'Chubut',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Rafaela',
+            'provincia' => 'Santa Fe',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Resistencia',
+            'provincia' => 'Chaco',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Retiro',
+            'provincia' => 'CABA',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Rio Cuarto',
+            'provincia' => 'Cordoba',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Rio Gallego',
+            'provincia' => 'Santa Cruz',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Rosario',
+            'provincia' => 'Santa Fe',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Salta',
+            'provincia' => 'Salta',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Salvador Mass',
+            'provincia' => 'Salta',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'San Bernardo',
+            'provincia' => 'Buenos Aires',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'San Fernando del Valle de Catamarca',
+            'provincia' => 'Catamarca',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'San Juan',
+            'provincia' => 'San Juan',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'San Luis',
+            'provincia' => 'San Luis',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'San Martin de los Andes',
+            'provincia' => 'Neuquen',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'San Miguel de Tucuman',
+            'provincia' => 'Tucuman',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'San Rafael',
+            'provincia' => 'Mendoza',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'San Salvador de Jujuy',
+            'provincia' => 'Jujuy',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Santa Rosa',
+            'provincia' => 'La Pampa',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Santa Teresita',
+            'provincia' => 'Buenos Aires',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Santiago del Estero',
+            'provincia' => 'Santiago del Estero',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
+            'ciudad' => 'Tandil',
+            'provincia' => 'Buenos Aires',
         ]);
 
         DB::table('lugares')->insert([
-            'ciudad' => 'Fiat Ducato',
-            'provincia' => 'COV651',
-        ]);   
+            'ciudad' => 'Termas de Rio Hondo',
+            'provincia' => 'Santiago del Estero',
+        ]);
+
+        DB::table('lugares')->insert([
+            'ciudad' => 'Trelew',
+            'provincia' => 'Chubut',
+        ]);
+
+        DB::table('lugares')->insert([
+            'ciudad' => 'Villa Carlos Paz',
+            'provincia' => 'Cordoba',
+        ]);
+
+        DB::table('lugares')->insert([
+            'ciudad' => 'Villa Gesell',
+            'provincia' => 'Buenos Aires',
+        ]);
+
+        DB::table('lugares')->insert([
+            'ciudad' => 'Villa Maria',
+            'provincia' => 'Cordoba',
+        ]);
+
+        DB::table('lugares')->insert([
+            'ciudad' => 'Villa Mercedes',
+            'provincia' => 'San Luis',
+        ]);
     }
 }
