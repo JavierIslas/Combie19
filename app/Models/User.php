@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -42,4 +44,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function isClient(){ 
+        $fila = DB::table('users')->where('id','=', Auth::id())->value('gold');
+        return $fila <= 1;
+    }
+
+    public static function isAdmin(){
+        $fila = DB::table('users')->where('id','=', Auth::id())->value('gold');
+        return $fila == 3;
+    }
+
+    public static function isDriver(){
+        $fila = DB::table('users')->where('id','=', Auth::id())->value('gold');
+        return $fila == 2;
+    }
 }

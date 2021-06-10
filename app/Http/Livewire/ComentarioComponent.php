@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Models\Comentario;
 
-class Comentario extends Component
+class ComentarioComponent extends Component
 {
     public $rating;
     public $comment;
