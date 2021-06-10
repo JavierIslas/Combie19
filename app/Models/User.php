@@ -46,17 +46,17 @@ class User extends Authenticatable
     ];
 
     public static function isClient(){ 
-        $fila = DB::table('users')->where('id','=', Auth::id())->pluck('gold');
-        return $fila->count() <= 1;
+        $fila = DB::table('users')->where('id','=', Auth::id())->value('gold');
+        return $fila <= 1;
     }
 
     public static function isAdmin(){
-        $fila = DB::table('users')->where('id','=', Auth::id())->pluck('gold');
-        return $fila->count() == 3;
+        $fila = DB::table('users')->where('id','=', Auth::id())->value('gold');
+        return $fila == 3;
     }
 
     public static function isDriver(){
-        $fila = DB::table('users')->where('id','=', Auth::id())->pluck('gold');
-        return $fila->count() == 2;
+        $fila = DB::table('users')->where('id','=', Auth::id())->value('gold');
+        return $fila == 2;
     }
 }
