@@ -59,4 +59,8 @@ class User extends Authenticatable
         $fila = DB::table('users')->where('id','=', Auth::id())->value('gold');
         return $fila == 2;
     }
+
+    public static function puedeComentar(){
+        return DB::table('users')->where('id','=', Auth::id())->value('compro');
+    }
 }

@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->boolean('quarentine')->default('0');
             $table->boolean('gold')->default('0');
+            $table->boolean('compro')->default('0');
         });
     }
 
