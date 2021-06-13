@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+use App\Http\Requests\saveUsuarioRequest;
+
 class RegisterController extends Controller
 {
     /*
@@ -73,5 +75,16 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'birthday' => $data['birthday'],
         ]);
+    }
+
+    public function edit($id){
+         return view('usuario.editar', ['usuario' => User::findOrFail($id)]);
+    }
+
+    public function update(saveUsuarioRequest $validacion, $id){
+        $usuario = User::findOrFail($id);
+        $usuario->update($validacion->validated());
+
+        return redirect()->route('home')->with('status', __('Informacion actualizado correctamente.'));
     }
 }
