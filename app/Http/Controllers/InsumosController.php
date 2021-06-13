@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Insumo;
 use Illuminate\Validation\Rule;
-
+use Illuminate\Database\QueryException;
 
 class InsumosController extends Controller
 {
@@ -79,14 +79,18 @@ class InsumosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $insumo = Insumo::find($id);
-        $insumo -> update($request -> validate([
+         $insumo = Insumo::find($id);
+        try {
+             $insumo -> update($request -> validate([
             'nombre'=>'required|string', Rule::unique('insumo')->ignore($insumo->nombre),
             'precio'=>'required|Int',
             'tipo'=> 'required'
         ]));
 
          return redirect()->route('administracionInsumos.show', $id)->with('status', __('Insumo actualizado exitosamente'));
+        } catch (QueryException $e) {
+         return redirect()->route('administracionInsumos.show', $id)->with('status', __('No se puede modificar el insumo dado que ya existe en la base de datos'));
+        }
     }
 
     /**

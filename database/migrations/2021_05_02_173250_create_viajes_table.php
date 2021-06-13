@@ -16,6 +16,12 @@ class CreateViajesTable extends Migration
         Schema::create('viajes', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->bigInteger('precio');
+            $table->date('fecha');
+            $table->timestamp('horario_Salida');
+            $table->timestamp('horario_Llegada');
+            $table->foreign('ruta_id')->references('id')->on('rutas');
+            $table->bigInteger('asientos_disponibles');
         });
     }
 
