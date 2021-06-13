@@ -87,4 +87,8 @@ class RegisterController extends Controller
 
         return redirect()->route('home')->with('status', __('Informacion actualizado correctamente.'));
     }
+
+    public function show($id){
+        return view('Usuario.show', ['usuario' => User::findOrFail($id)]);
+    }
 }

@@ -61,7 +61,7 @@
 
                         @endif
                     @auth
-                        <li class= "{{setActive('Usuario.editar')}}"><a href="{{route('Usuario.editar', Auth::id())}}">@lang('Editar Usuario')</a></li>
+                        <li class= "{{setActive('Usuario.show')}}"><a href="{{route('Usuario.show', Auth::id())}}">@lang('Informacion Personal')</a></li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}</a>

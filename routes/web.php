@@ -31,6 +31,8 @@ Route::get('/administracionRutas', [RutasController::class, 'index'])->name('adm
 Route::resource('/administracionRutas','RutasController')->except(['index']);
 
 Auth::routes();
+
+Route::get('/areaPersonal/{id}', [RegisterController::class, 'show'])->name('Usuario.show');
 Route::get('/areaPersonal/{id}/editar', [RegisterController::class, 'edit'])->name('Usuario.editar');
 Route::patch('/areaPersonal/{id}', [RegisterController::class, 'update'])->name('Usuario.actualizar');
 
