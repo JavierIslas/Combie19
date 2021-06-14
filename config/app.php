@@ -226,6 +226,7 @@ return [
         'Str' => Illuminate\Support\Str::class,
         'URL' => Illuminate\Support\Facades\URL::class,
         'User' => App\Models\User::class,
+        'Comentarios' => App\Models\Comentario::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
     ],
