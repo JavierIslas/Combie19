@@ -25,5 +25,3 @@
 
 <label>Distancia en KMs: </label>
 	<input type="number" name="distancia" value="{{old('distancia', $ruta->distancia)}}"><br>
-
-<button>Dar de Alta</button>

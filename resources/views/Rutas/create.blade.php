@@ -7,5 +7,7 @@
 @include('partials.errorVal')
 	<form method="POST" action="{{ route('administracionRutas.store') }}">
 		@include('Rutas._formularioRutas', ['btnText' => 'Dar de Alta'])
+
+		<button>Dar de Alta</button>
 	</form>
 @endsection

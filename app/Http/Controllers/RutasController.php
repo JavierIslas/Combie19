@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Database\QueryException;
 use App\Models\Ruta;
 use App\Models\Locacion;
 use App\Models\Combi;
@@ -44,7 +44,7 @@ class RutasController extends Controller
     {
         Ruta::create( $request -> validate ([
              'origen' => 'required|Int|different:destino',
-             'destino' => 'required|Int|different:origen',
+             'destino' => 'required|Int',
              'combie_id' => 'required|Int',
              'duracion' => 'required|date_format:H:i',
              'distancia' => 'required|numeric|Min:1|Max:10000',
@@ -92,7 +92,7 @@ class RutasController extends Controller
         $combi = Combi::find($ruta->combie_id);
         $ruta -> update( $request -> validate ([
              'origen' => 'required|Int|different:destino',
-             'destino' => 'required|Int|different:origen',
+             'destino' => 'required|Int',
              'combie_id' => 'required|Int',
              'duracion' => 'required|date_format:H:i:s',
              'distancia' => 'required|numeric|Min:1|Max:10000',
@@ -109,14 +109,11 @@ class RutasController extends Controller
      */
     public function destroy($id)
     {
-        /*Ruta::destroy($id);
-        return redirect()->route('administracionRutas');
-        */
         try {
             Ruta::destroy($id);
             return redirect()->route('administracionRutas')->with('status', __('Ruta eliminada correctamente.'));
         } catch(QueryException $ex){
-            return redirect()->route('Rutas.show', $id)->with('status', __('No se puede eliminar, Ruta asignada a un viaje.'));
+            return redirect()->route('administracionRutas.show', $id)->with('status', __('No se puede eliminar debido a que la Ruta se encuentra asignada a un viaje.'));
         }
     }
 }
