@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Database\QueryException;
+use App\Models\User;
+use App\Models\Comentario;
+use App\Http\Requests\SaveComentarioRequest;
 
-use App\Models\Combi;
-use App\Models\Chofer;
-
-use App\Http\Requests\SaveCombiRequest;
-
-class CombisController extends Controller
+class ComentarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +16,8 @@ class CombisController extends Controller
      */
     public function index()
     {
-        $combis = Combi::get();
-
-       return view('Combis.index',compact('combis'));
+        $comentarios = Comentario::get();
+       return view('Comentarios.index',compact('comentarios'));
     }
 
     /**
@@ -29,26 +25,25 @@ class CombisController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    /*public function create()
     {
-
         $choferes = Chofer::get();
-        return view('Combis.create',compact('choferes'),['combi' => new Combi]);
+        return view('Combis.create',compact('choferes'),['combi' => new Comentario]);
     }
-
+*/
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SaveCombiRequest $request)
+    public function store(SaveComentarioRequest $request)
     {
         try {
-            Combi::create($request->validated());
-            return redirect()->route('administracionCombis')->with('status', __('Combi dada de alta satisfactoriamente'));
+            Comentario::create($request->validated());
+            return redirect()->route('Comentario')->with('status', __('Comentario enviado satisfactoriamente'));
         } catch (QueryException $e) {
-            return redirect()->route('administracionCombis.create')->with('status', __('Error: La patente ya se encuentra registrada en la base de datos'));
+            return redirect()->route('Comentario.create')->with('status', __('Error: Usted ya nos ha enviado un comentario'));
         }
         
         

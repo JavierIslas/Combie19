@@ -6,6 +6,7 @@ use App\Http\Controllers\CombisController;
 use App\Http\Controllers\LocacionesController;
 use App\Http\Controllers\RutasController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ComentarioController;
 
 Route::view('/', 'home')->name('home');
 Route::view('/about', 'about')->name('about');
@@ -35,6 +36,12 @@ Auth::routes();
 Route::get('/areaPersonal/{id}', [UserController::class, 'show'])->name('User.show');
 Route::get('/areaPersonal/{id}/editar', [UserController::class, 'edit'])->name('User.editar');
 Route::patch('/areaPersonal/{id}', [UserController::class, 'update'])->name('User.actualizar');
+
+Route::get('/comentarios', [ComentarioController::class, 'index'])->name('Comentario');
+Route::get('/comentarios/agregar', [ComentarioController::class, 'create'])->name('Comentario.nuevo');
+Route::get('/comentarios/{id}/editar', [ComentarioController::class, 'edit'])->name('Comentario.editar');
+Route::patch('/comentarios/{id}', [ComentarioController::class, 'update'])->name('Comentario.actualizar');
+Route::get('/comentarios/{id}', [ComentarioController::class, 'show'])->name('Comentario.show');
 
 Route::resource('/administracionViajes', 'ViajesController');
 Route::resource('/administracionInsumos','InsumosController');

@@ -15,7 +15,7 @@ class ChoferesSeeder extends Seeder
            Returns date in between them.
         */
         $min_epoch = strtotime("1955-10-01 00:00:00");
-        $max_epoch = strtotime("2008-10-01 00:00:00");
+        $max_epoch = strtotime("2003-10-01 00:00:00");
 
         $rand_epoch = rand($min_epoch, $max_epoch);
 
@@ -38,7 +38,6 @@ class ChoferesSeeder extends Seeder
             'phone' => '1805-7044',
             'birthday' => $fecha,
             'extra' => Str::random(20),
-
         ]);
         DB::table('users')->insert([
             'name' => 'Alvarez, Roberto Cristian',

@@ -19,6 +19,7 @@ class CreateViajesTable extends Migration
             $table->date('fecha');
             $table->timestamp('horario_Salida');
             $table->timestamp('horario_Llegada');
+            $table->bigInteger('ruta_id')->unsigned();
             $table->foreign('ruta_id')->references('id')->on('rutas');
             $table->bigInteger('asientos_disponibles');
             $table->timestamps();

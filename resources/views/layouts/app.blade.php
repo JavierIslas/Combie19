@@ -7,7 +7,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Combi 19') }}</title>
+    <title>@yield('title', 'Combie19')</title>
+    <style>
+        .active a{
+            color: red;
+            text-decoration: none;
+        }
+    </style>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -44,7 +50,7 @@
                         @if (User::isClient())
                             <li class= "{{setActive('about')}}"><a href="{{route('about')}}">@lang('Comprar Pasaje')</a></li>
                             @if (User::puedeComentar())
-                            <li class= "{{setActive('contact')}}"><a href="{{route('contact')}}">@lang('Informacion de Contacto')</a></li>
+                            <li class= "{{setActive('Comentario')}}"><a href="{{route('Comentario')}}">@lang('Informacion de Contacto')</a></li>
                             @endif
                         @endif
                         @if (User::isAdmin())
@@ -52,12 +58,12 @@
 
                             <li class= "{{setActive('administracionCombis')}}"><a href="{{route('administracionCombis')}}">@lang('Administracion de Combis')</a></li>
 
-                            <li class= "{{setActive('aministracionLocaciones')}}"><a href="{{route('administracionLocaciones')}}">@lang('Administracion de Locaciones')</a></li>
+                            <li class= "{{setActive('administracionLocaciones')}}"><a href="{{route('administracionLocaciones')}}">@lang('Administracion de Locaciones')</a></li>
 
-                            <li class= "{{setActive('aministracionRutas')}}"><a href="{{route('administracionRutas')}}">@lang('Administracion de Rutas')</a>
+                            <li class= "{{setActive('administracionRutas')}}"><a href="{{route('administracionRutas')}}">@lang('Administracion de Rutas')</a>
                             </li>
 
-                            <li class= "{{setActive('aministracionViajes')}}"><a href="{{route('administracionViajes.index')}}">@lang('Administracion de Viajes')</a>
+                            <li class= "{{setActive('administracionViajes')}}"><a href="{{route('administracionViajes.index')}}">@lang('Administracion de Viajes')</a>
                             </li>
 
                             <li class= "{{setActive('administracionInsumos')}}"><a href="{{route('administracionInsumos.index')}}">@lang('Administracion de Insumos')</a>
@@ -104,6 +110,7 @@
         </nav>
 
         <main class="py-4">
+            @include('partials.session-status')
             @yield('content')
         </main>
     </div>
