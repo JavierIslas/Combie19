@@ -8,7 +8,12 @@
 	@include('partials.session-status')
 	<ul>
 		@forelse($comentarios as $comentario)
-			<li><a href="{{ route('Comentario.show', $comentario) }}">{{ $comentario->descripcion }} </a></li>
+			<li><a href="{{ route('Comentario.show', $comentario) }}"> 
+			@for ($i = 0; $i < $comentario->rating; $i++)
+				&#9733
+			@endfor
+			{{$comentario->descripcion }}
+			</a></li>
 		@empty
 			<li>No hay nada que mostrar</li>
 		@endforelse

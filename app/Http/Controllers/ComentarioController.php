@@ -17,7 +17,7 @@ class ComentarioController extends Controller
     public function index()
     {
         $comentarios = Comentario::get();
-       return view('Comentarios.index',compact('comentarios'));
+        return view('Comentarios.index', compact('comentarios'));
     }
 
     /**
@@ -57,9 +57,9 @@ class ComentarioController extends Controller
      */
     public function show($id)
     {
-       // $choferes = Chofer::get();
-        $combi= Combi::find($id);
-        return view('Combis.show',['combi' => Combi::findOrFail($id)],['choferDeCombi' => Chofer::find($combi->chofer_id)]);
+        //$usuarios = User::get();
+        $comentario= Comentario::find($id);
+        return view('Comentarios.show',['comentario' => Comentario::findOrFail($id)],['usuario' => User::find($comentario->user_id)]);
     }
 
     /**
@@ -81,7 +81,7 @@ class ComentarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SaveCombiRequest $request, $id)
+    public function update(SaveComentarioRequest $request, $id)
     {
         try {
             $combi= Combi::find($id);
@@ -102,12 +102,15 @@ class ComentarioController extends Controller
      */
     public function destroy($id)
     {
-
-       try {
-            Combi::destroy($id);
-            return redirect()->route('administracionCombis')->with('status', __('Combi eliminada correctamente'));
-       } catch(QueryException $ex){
-            return redirect()->route('administracionCombis.show', $id)->with('status', __('No se puede eliminar la combi ya que esta asignada a una ruta'));
+        $comentario = Comentario::get($id);
+        if($comentario->user_id == Auth::id()){
+           try {
+                Comentario::destroy($id);
+                return redirect()->route('administracionCombis')->with('status', __('Combi eliminada correctamente'));
+            } catch(QueryException $ex){
+                return redirect()->route('administracionCombis.show', $id)->with('status', __('Por alguna razon no se pudo eliminar el comentario'));
+            }
         }
+        else {return redirect()->route('Comentario.show', $id)->with('status', __('Este comentario no le pertenece... ¿Cómo llego a este punto?'));}
     }
 }
