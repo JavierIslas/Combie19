@@ -109,7 +109,14 @@ class RutasController extends Controller
      */
     public function destroy($id)
     {
-        Ruta::destroy($id);
+        /*Ruta::destroy($id);
         return redirect()->route('administracionRutas');
+        */
+        try {
+            Ruta::destroy($id);
+            return redirect()->route('administracionRutas')->with('status', __('Ruta eliminada correctamente.'));
+        } catch(QueryException $ex){
+            return redirect()->route('Rutas.show', $id)->with('status', __('No se puede eliminar, Ruta asignada a un viaje.'));
+        }
     }
 }
