@@ -13,7 +13,7 @@ class CreateViajesTable extends Migration
      */
     public function up()
     {
-        Schema::create('rutas', function (Blueprint $table) {
+        Schema::create('viajes', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('origen')->unsigned();
             $table->bigInteger('destino')->unsigned();
