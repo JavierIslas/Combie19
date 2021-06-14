@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth; 
 
 class altaChoferRequest extends FormRequest
 {
@@ -26,7 +27,7 @@ class altaChoferRequest extends FormRequest
         return [
             'last_name' => 'required',
             'name' => 'required',
-            'email' => 'required|unique:choferes,email', //ERROR
+            "email" => "required|email|max:128|unique:users,email,".Auth::id().",id", //ERROR
             'password' => 'required',
             'phone' => 'required',
             'birthday' => 'required',

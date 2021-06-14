@@ -12,6 +12,6 @@
 	<label>Telefono: </label><input type="string" name="phone" value="{{old('phone', $usuario->phone)}}"><br>
 	<label>Contraseña: </label><input type="password" name="password" value="{{old('password', $usuario->password)}}"><br>
 	<label>Fecha de nacimiento: </label><input type="date" name="birthday" value="{{old('birthday', $usuario->birthday)}}"><br>
-	<button>Aceptar</button>)
+	<button>Aceptar</button>
 	</form>
 @endsection
