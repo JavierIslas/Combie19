@@ -3,7 +3,7 @@
 @section('title','Informacion')
 
 @section('content')
-<a href="{{route('Usuario.editar', $usuario)}}">Editar Informacion Personal</a>
+<a href="{{route('User.editar', $usuario)}}">Editar Informacion Personal</a>
 <br>
 
 </form>

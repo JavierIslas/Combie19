@@ -5,7 +5,7 @@ use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\CombisController;
 use App\Http\Controllers\LocacionesController;
 use App\Http\Controllers\RutasController;
-use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\UserController;
 
 Route::view('/', 'home')->name('home');
 Route::view('/about', 'about')->name('about');
@@ -32,9 +32,9 @@ Route::resource('/administracionRutas','RutasController')->except(['index']);
 
 Auth::routes();
 
-Route::get('/areaPersonal/{id}', [RegisterController::class, 'show'])->name('Usuario.show');
-Route::get('/areaPersonal/{id}/editar', [RegisterController::class, 'edit'])->name('Usuario.editar');
-Route::patch('/areaPersonal/{id}', [RegisterController::class, 'update'])->name('Usuario.actualizar');
+Route::get('/areaPersonal/{id}', [UserController::class, 'show'])->name('User.show');
+Route::get('/areaPersonal/{id}/editar', [UserController::class, 'edit'])->name('User.editar');
+Route::patch('/areaPersonal/{id}', [UserController::class, 'update'])->name('User.actualizar');
 
 Route::resource('/administracionViajes', 'ViajesController');
 Route::resource('/administracionInsumos','InsumosController');

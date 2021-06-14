@@ -15,14 +15,12 @@ class CreateViajesTable extends Migration
     {
         Schema::create('viajes', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('origen')->unsigned();
-            $table->bigInteger('destino')->unsigned();
-            $table->bigInteger('combie_id')->unsigned();
-            $table->foreign('origen')->references('id')->on('lugares');
-            $table->foreign('destino')->references('id')->on('lugares');
-            $table->foreign('combie_id')->references('id')->on('combis');
-            $table->time('duracion');
-            $table->double('distancia');
+            $table->bigInteger('precio');
+            $table->date('fecha');
+            $table->timestamp('horario_Salida');
+            $table->timestamp('horario_Llegada');
+            $table->foreign('ruta_id')->references('id')->on('rutas');
+            $table->bigInteger('asientos_disponibles');
             $table->timestamps();
         });
     }

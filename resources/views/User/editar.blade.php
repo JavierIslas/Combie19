@@ -5,7 +5,7 @@
 @section('content')
 	<h1>Editor de Informacion Personal</h1>
 @include('partials.errorVal')
-	<form method="POST" action="{{ route('Usuario.actualizar', $usuario) }}">@method('PATCH')
+	<form method="POST" action="{{ route('User.actualizar', $usuario) }}">@method('PATCH')
 	@csrf
 	<label>Nombre Completo: </label><input type="string" name="name" value="{{old('name', $usuario->name)}}"><br>
 	<label>Email: </label><input type="string" name="email" value="{{old('email', $usuario->email)}}"><br>
