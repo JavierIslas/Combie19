@@ -9,6 +9,6 @@
 @include('partials.errorVal')
 	<form method="POST" action="{{ route('administracionInsumos.update', $insumo) }}">
 	@method('PATCH')
-	@include('Insumos._formularioInsumos', ['btnText' => 'Modificar Locacion'])
+	@include('Insumos._formularioInsumos', ['btnText' => 'Modificar Insumo'])
 	</form>
 @endsection

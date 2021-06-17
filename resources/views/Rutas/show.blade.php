@@ -4,6 +4,10 @@
 
 @section('content')
 
+<form method="POST" action="{{route('administracionRutas.destroy',$ruta)}}">
+	@csrf @method('DELETE')
+	<button>Eliminar</button>
+
 </form>
 	<div>
 		<p>{{ 'Origen: '.$lugarOrigen->provincia . ' - ' .$lugarOrigen->ciudad}}</p>
@@ -11,17 +15,13 @@
 		<p>{{ 'Combi (Patente - Conductor): '.$combi->patente . ' - ' .$choferDeCombi->last_name . ', ' .$choferDeCombi->name}}</p>
 		<p>{{ 'Duracion: '.$ruta -> duracion}}</p>
 		<p>{{ 'Distancia: '.$ruta -> distancia . ' Kms'}}</p>
-		<p>{{ 'Dada de alta el: '.$ruta -> created_at}}</p>
-		<p>{{ 'Ultima actualizacion: '.$ruta -> updated_at}}</p>
+		{{-- <p>{{ 'Dada de alta el: '.$ruta -> created_at}}</p>
+		<p>{{ 'Ultima actualizacion: '.$ruta -> updated_at}}</p> --}}
 	</div>
 
 
 	<a href="{{route('administracionRutas.edit', $ruta)}}">
 		<button>Editar ruta</button>
 	</a>
-
-	<form method="POST" action="{{route('administracionRutas.destroy',$ruta)}}">
-		@csrf @method('DELETE')
-		<button>Eliminar</button>
 
 @endsection

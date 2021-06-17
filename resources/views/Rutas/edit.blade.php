@@ -8,5 +8,7 @@
 	<form method="POST" action="{{ route('administracionRutas.update', $ruta) }}">
 		@method('PATCH')
 		@include('Rutas._formularioRutas', ['btnText' => 'Aceptar'])
+
+		<button>Dar de Alta</button>
 	</form>
 @endsection

@@ -39,9 +39,11 @@ Route::patch('/areaPersonal/{id}', [UserController::class, 'update'])->name('Use
 
 Route::get('/comentarios', [ComentarioController::class, 'index'])->name('Comentario');
 Route::get('/comentarios/agregar', [ComentarioController::class, 'create'])->name('Comentario.nuevo');
+Route::post('/comentarios', [ComentarioController::class, 'store'])->name('Comentario.almacenar');
 Route::get('/comentarios/{id}/editar', [ComentarioController::class, 'edit'])->name('Comentario.editar');
 Route::patch('/comentarios/{id}', [ComentarioController::class, 'update'])->name('Comentario.actualizar');
 Route::get('/comentarios/{id}', [ComentarioController::class, 'show'])->name('Comentario.show');
+Route::delete('/comentarios/{id}', [ComentarioController::class, 'destroy'])->name('Comentario.eliminar');
 
 Route::resource('/administracionViajes', 'ViajesController');
 Route::resource('/administracionInsumos','InsumosController');

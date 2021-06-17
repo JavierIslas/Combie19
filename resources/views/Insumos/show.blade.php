@@ -5,7 +5,6 @@
 @section('content')
 <a href="{{route('administracionInsumos.edit', $insumo)}}">Modificar Insumo</a>
 <br>
-@include('partials.session-status')
 <form method="POST" action="{{route('administracionInsumos.destroy',$insumo)}}">
 	@csrf @method('DELETE')
 	<button>Eliminar</button>

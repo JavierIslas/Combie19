@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class saveComentarioRequest extends FormRequest
+class saveUsuarioRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class saveComentarioRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return true; //cambiar cuando haya cliente
     }
 
     /**
@@ -24,9 +24,11 @@ class saveComentarioRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required',
-            'rating' =>'required|Int|max:5|min:1',
-            'descripcion' => 'required|max:255',
+            'name' => 'required',
+            'email' => 'required|unique:usuarios,email', //ERROR
+            'password' => 'required',
+            'phone' => 'required',
+            'birthday' => 'required',
         ];
     }
 }
