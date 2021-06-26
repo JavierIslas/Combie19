@@ -13,7 +13,7 @@ class PasajesController extends Controller
 {
     public function index()
     {
-        $viajes = DB::table('viajes')->groupBy('asientos_disponibles')->having('asientos_disponibles', '>', 0)->get();
+        $viajes = DB::table('viajes')->where('asientos_disponibles', '>', 0)->get();
         return view('Pasajes.index',compact('viajes'));
     }
 
@@ -26,7 +26,7 @@ class PasajesController extends Controller
     {
         
         $rutas = Ruta::get();
-        return view('Pasaje.create',compact('rutas'),['viaje' => new Viaje]);
+        return view('Pasajes.create',compact('rutas'),['viaje' => new Viaje]);
     }
 
     /**
@@ -49,8 +49,8 @@ class PasajesController extends Controller
             'viaje_id'=> $request->viaje_id,
             'usuario_id'=> $request->usuario_id,
             'estado' => 'reservado',
-
-      return redirect()->route('compraPasajes.index')->with('status', __('Pasaje reservado Satisfactoriamente'));;
+        ]);
+      return redirect()->route('Pasajes.index')->with('status', __('Pasaje reservado Satisfactoriamente'));
     }
 
     /**
@@ -62,7 +62,7 @@ class PasajesController extends Controller
     public function show($id)
     {
        $pasaje = Pasaje::find($id);
-       return view('pasaje.show',['pasaje' => Pasaje::findOrFail($id)],['viaje' => Viaje::find($pasaje->viaje_id)]);
+       return view('Pasajes.show',['pasaje' => Pasaje::findOrFail($id)],['viaje' => Viaje::find($pasaje->viaje_id)]);
     }
 
     /**
@@ -75,7 +75,7 @@ class PasajesController extends Controller
     {
       
         $pasaje = Pasaje::get();
-        return view('Pasaje.edit',compact('pasaje'),['pasaje' => Pasaje::findOrFail($id)]);
+        return view('Pasajes.edit',compact('pasaje'),['pasaje' => Pasaje::findOrFail($id)]);
         
     }
 
