@@ -29,7 +29,7 @@ class saveUserRequest extends FormRequest
             "email" => "required|email|max:128|unique:users,email,".Auth::id().",id", //ERROR
             'password' => 'required',
             'phone' => 'required',
-            'birthday' =>'required|date|before:18 years ago',,
+            'birthday' =>'required|date|before:18 years ago',
         ];
     }
 }

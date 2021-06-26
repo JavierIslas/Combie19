@@ -51,13 +51,18 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $messages = [
+            'name.required' => 'Please enter full name',     
+            'email.required' => 'Please enter a valid address',
+            'birthday.required' => 'You must be 18 yers old or older'
+        ];
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phone' => ['required', 'string', 'min:8'],
-            'birthday' => ['required', 'date'],
-        ]);
+            'birthday' => 'required|date|before:18 years ago'
+        ], $messages);
     }
 
     /**

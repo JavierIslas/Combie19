@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\DB;
 use App\Models\Viaje;
 use App\Models\User;
 use App\Models\Pasaje;
@@ -12,8 +13,8 @@ class PasajesController extends Controller
 {
     public function index()
     {
-        $Pasaje = Pasaje::get();
-        return view('Pasajes.index',compact('Pasaje'));
+        $viajes = DB::table('viajes')->groupBy('asientos_disponibles')->having('asientos_disponibles', '>', 0)->get();
+        return view('Pasajes.index',compact('viajes'));
     }
 
     /**
@@ -45,7 +46,7 @@ class PasajesController extends Controller
             'estado' => 'required',
          ]);
        Pasaje::create( [
-             'viaje_id'=> $request->viaje_id,
+            'viaje_id'=> $request->viaje_id,
             'usuario_id'=> $request->usuario_id,
             'estado' => 'reservado',
 
@@ -85,33 +86,8 @@ class PasajesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    /*public function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
-
-       
-            $Pasaje=Pasaje::find($id);
-            $request->validate([
-             'precio'=> 'required|numeric|Min:1',
-             'fecha'=> 'required|Date',
-             'horario_Salida'=>'required',
-             'horario_Llegada'=>'required',
-            ]);
-
-            try{
-
-              $viaje->update( [
-             'precio'=> request('precio'),
-             'fecha'=> request('fecha'),
-             'horario_Salida'=> request('horario_Salida'),
-             'horario_Llegada'=> request('horario_Llegada'),
-             'ruta_id' => request('ruta_id'),
-              ]);  
-             return redirect()->route('administracionViajes.show',$id)->with('status', __('Viaje modificado exitosamente'));
-
-            }
-            catch  (QueryException $e){
-              return redirect()->route('administracionViajes.show',$id)->with('status', __('No se puede modificar un viaje asignado a una Ruta'));   
-            }
             
     }
 

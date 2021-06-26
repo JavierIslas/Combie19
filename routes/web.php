@@ -5,11 +5,19 @@ use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\CombisController;
 use App\Http\Controllers\LocacionesController;
 use App\Http\Controllers\RutasController;
+use App\Http\Controllers\PasajeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ComentarioController;
 
 Route::view('/', 'home')->name('home');
-Route::view('/about', 'about')->name('about');
+
+Route::get('/comprar', [PasajeController::class, 'index'])->name('Pasajes');
+Route::get('/comprar/{id}', [PasajeController::class, 'show'])->name('Pasajes.show');
+Route::get('/comprar/compra', [PasajeController::class, 'create'])->name('Pasajes.nuevo');
+Route::get('/Pasajes/{id}/editar', [PasajeController::class, 'edit'])->name('Pasajes.editar');
+Route::patch('/Pasajes/{id}', [PasajeController::class, 'update'])->name('Pasajes.actualizar');
+Route::post('/Pasajes', [PasajeController::class, 'store'])->name('Pasajes.almacenar');
+Route::delete('/Pasajes/{id}', [PasajeController::class, 'destroy'])->name('Pasajes.eliminar');
 
 Route::get('/administracionChoferes', [ChoferController::class, 'index'])->name('Choferes');
 Route::get('/administracionChoferes/agregar', [ChoferController::class, 'create'])->name('Choferes.nuevo');

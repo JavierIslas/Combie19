@@ -28,7 +28,7 @@ class saveUsuarioRequest extends FormRequest
             'email' => 'required|unique:usuarios,email', //ERROR
             'password' => 'required',
             'phone' => 'required',
-            'birthday' => 'required',
+            'birthday' => 'required|date|before:18 years ago',
         ];
     }
 }
