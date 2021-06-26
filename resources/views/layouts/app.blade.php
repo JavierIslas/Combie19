@@ -49,7 +49,6 @@
                         <!-- Authentication Links -->
                         @if (User::isClient())
                             <li class= "{{setActive('Pasajes')}}"><a href="{{route('Pasajes')}}">@lang('Comprar Pasaje')</a></li>
-
                             @if (User::puedeComentar())
                             <li class= "{{setActive('Comentario')}}"><a href="{{route('Comentario')}}">@lang('Informacion de Contacto')</a></li>
                             @endif
