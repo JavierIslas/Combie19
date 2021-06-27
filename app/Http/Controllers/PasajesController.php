@@ -11,10 +11,15 @@ use App\Models\Pasaje;
 
 class PasajesController extends Controller
 {
+    private function viajesAsientosLibres(){
+        return DB::table('viajes')->where('asientos_disponibles', '>', 0)->get();
+    }
     public function index()
     {
-        $viajes = DB::table('viajes')->where('asientos_disponibles', '>', 0)->get();
-        return view('Pasajes.index',compact('viajes'));
+        $viajes = $this->viajesAsientosLibres();
+        $rutas = DB::table('rutas')->get();
+        $lugares = DB::table('lugares')->get();
+        return view('Pasajes.index',compact(['viajes', 'rutas', 'lugares']));
     }
 
     /**
