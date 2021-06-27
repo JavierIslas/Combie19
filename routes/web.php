@@ -17,6 +17,7 @@ Route::get('/comprar/compra', [PasajesController::class, 'create'])->name('Pasaj
 Route::get('/Pasajes/{id}/editar', [PasajesController::class, 'edit'])->name('Pasajes.editar');
 Route::patch('/Pasajes/{id}', [PasajesController::class, 'update'])->name('Pasajes.actualizar');
 Route::post('/Pasajes', [PasajesController::class, 'store'])->name('Pasajes.almacenar');
+Route::get('/Pasajes', [PasajesController::class, 'search'])->name('Pasajes.search');
 Route::delete('/Pasajes/{id}', [PasajesController::class, 'destroy'])->name('Pasajes.eliminar');
 
 Route::get('/administracionChoferes', [ChoferController::class, 'index'])->name('Choferes');

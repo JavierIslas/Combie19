@@ -14,9 +14,22 @@ class PasajesController extends Controller
     private function viajesAsientosLibres(){
         return DB::table('viajes')->where('asientos_disponibles', '>', 0)->get();
     }
+    
     public function index()
     {
+        //echo console.log('corre index');
         $viajes = $this->viajesAsientosLibres();
+        $rutas = DB::table('rutas')->get();
+        $lugares = DB::table('lugares')->get();
+        return view('Pasajes.index',compact(['viajes', 'rutas', 'lugares']));
+    }
+
+    public function search(Request $request){
+        //echo console.log('corre search');
+        $viajes = $this->viajesAsientosLibres();
+        if($request->fecha){
+            $viajes = $viajes->where('fecha', '=', $request->fecha);
+        }
         $rutas = DB::table('rutas')->get();
         $lugares = DB::table('lugares')->get();
         return view('Pasajes.index',compact(['viajes', 'rutas', 'lugares']));

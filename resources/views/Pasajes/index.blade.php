@@ -8,7 +8,7 @@
 	<div>
         <div class="mx-auto pull-right">
             <div class="">
-                <form action="{{ route('Pasajes') }}" method="GET" role="search">
+                <form action="{{ route('Pasajes.search') }}" method="GET">
                     <div class="input-group">
                     	<input type="date" class="form-control mr-2" name="fecha">
 
@@ -16,7 +16,7 @@
 
                         <input type="text" class="form-control mr-2" name="provincia" placeholder="Buscar por Provincia">
                       
-                        <button type="button" class="btn btn-success">Buscar Viaje</button>
+                        <button type="submit" class="btn btn-success">Buscar Viaje</button>
                     </div>
                 </form>
             </div>
