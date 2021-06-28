@@ -17,21 +17,39 @@ class PasajesController extends Controller
     
     public function index()
     {
-        //echo console.log('corre index');
         $viajes = $this->viajesAsientosLibres();
+        echo $viajes;
         $rutas = DB::table('rutas')->get();
         $lugares = DB::table('lugares')->get();
         return view('Pasajes.index',compact(['viajes', 'rutas', 'lugares']));
     }
 
     public function search(Request $request){
-        //echo console.log('corre search');
         $viajes = $this->viajesAsientosLibres();
         if($request->fecha){
             $viajes = $viajes->where('fecha', '=', $request->fecha);
         }
         $rutas = DB::table('rutas')->get();
         $lugares = DB::table('lugares')->get();
+        if($request->ciudad){
+            $idCiudad = DB::table('lugares')->where('ciudad', 'like', "%{$request->ciudad}%")->get()->pluck('id');
+            $rutasConCiudad = DB::table('rutas')->where('origen', '=', $idCiudad)->orWhere('destino', '=', $idCiudad)->get();
+
+            $idRutas = [];
+            foreach ($rutasConCiudad as $ruta) {
+                array_push($idRutas, $ruta->id);
+            }
+            $viajes = $viajes->whereIn('ruta_id', $idRutas);      
+        }
+        if($request->provincia){
+            $idProvincia = DB::table('lugares')->where('provincia', 'like', "%{$request->provincia}%")->get()->pluck('id');
+            $rutasConProvincia = DB::table('rutas')->where('origen', '=', $idProvincia)->orWhere('destino', '=', $idProvincia)->get();
+            $idRutas = [];
+            foreach ($rutasConProvincia as $ruta) {
+                 array_push($idRutas, $ruta->id);
+             } 
+            $viajes = $viajes->whereIn('ruta_id', $idRutas);      
+        }
         return view('Pasajes.index',compact(['viajes', 'rutas', 'lugares']));
     }
 

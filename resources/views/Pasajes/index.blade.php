@@ -5,6 +5,8 @@
 @section('content')
 	<h1>Encuentre su proximo Viaje</h1>
 
+	{{ var_dump($lugares) }}
+
 	<div>
         <div class="mx-auto pull-right">
             <div class="">
@@ -37,11 +39,16 @@
 		<tbody>
 			@forelse($viajes as $viaje)
 				<tr>
-					@if(Auth::user())							<th name="viaje_id" scope="row">{{$viaje->id}}
+					@if(Auth::user())	
+						<th name="viaje_id" scope="row">{{$viaje->id}}
 							<td>${{$viaje->precio}}</td>
+
 							<td>{{$viaje->fecha}}</td>
+
 							<td>{{$lugares[$rutas[$viaje->ruta_id]->origen]->ciudad}} - {{$lugares[$rutas[$viaje->ruta_id]->origen]->provincia}}</td>
-							<td>{{$lugares[$rutas[$viaje->ruta_id]->destino]->ciudad}} - {{$lugares[$rutas[$viaje->ruta_id]->origen]->provincia}}</td>
+
+							<td>{{$lugares[$rutas[$viaje->ruta_id]->destino]->ciudad}} - {{$lugares[$rutas[$viaje->ruta_id]->destino]->provincia}}</td>
+
 							<td>{{$viaje->horario_Salida}}</td>
 							<td>
 								<form action="{{ route('Pasajes.show', Auth::user()->id) }}" method="POST">
@@ -52,9 +59,13 @@
 					@else
 						<th name="viaje_id" scope="row">{{$viaje->id}}
 							<td>${{$viaje->precio}}</td>
+
 							<td>{{$viaje->fecha}}</td>
+
 							<td>{{$lugares[$rutas[$viaje->ruta_id]->origen]->ciudad}} - {{$lugares[$rutas[$viaje->ruta_id]->origen]->provincia}}</td>
-							<td>{{$lugares[$rutas[$viaje->ruta_id]->destino]->ciudad}} - {{$lugares[$rutas[$viaje->ruta_id]->origen]->provincia}}</td>
+
+							<td>{{$lugares[$rutas[$viaje->ruta_id]->destino]->ciudad}} - {{$lugares[$rutas[$viaje->ruta_id]->destino]->provincia}}</td>
+							
 							<td>{{$viaje->horario_Salida}}</td>
 							<td><a class="button" href="{{ route('login') }}">{{ __('Comprar') }}</a></td>
 						</th>
