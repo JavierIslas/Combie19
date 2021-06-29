@@ -13,7 +13,7 @@ Route::view('/', 'home')->name('home');
 
 Route::get('/comprar', [PasajesController::class, 'index'])->name('Pasajes');
 Route::get('/comprar/{id}', [PasajesController::class, 'show'])->name('Pasajes.show');
-Route::get('/comprar/compra', [PasajesController::class, 'create'])->name('Pasajes.nuevo');
+Route::post('/comprar/compra', [PasajesController::class, 'create'])->name('Pasajes.nuevo');
 Route::get('/Pasajes/{id}/editar', [PasajesController::class, 'edit'])->name('Pasajes.editar');
 Route::patch('/Pasajes/{id}', [PasajesController::class, 'update'])->name('Pasajes.actualizar');
 Route::post('/Pasajes', [PasajesController::class, 'store'])->name('Pasajes.almacenar');

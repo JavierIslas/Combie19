@@ -5,8 +5,6 @@
 @section('content')
 	<h1>Encuentre su proximo Viaje</h1>
 
-	{{ var_dump($lugares) }}
-
 	<div>
         <div class="mx-auto pull-right">
             <div class="">
@@ -51,8 +49,9 @@
 
 							<td>{{$viaje->horario_Salida}}</td>
 							<td>
-								<form action="{{ route('Pasajes.show', Auth::user()->id) }}" method="POST">
-									<button type="button" class="btn btn-primary btn-sm">Comprar</button>
+								<form action="{{ route('Pasajes.show', Auth::user()->id) }}" method="GET">
+									<input type="hidden" name="viajeID" value="{{$viaje->id}}" readonly>
+									<button type="submit" class="btn btn-primary btn-sm">Comprar</button>
 								</form>
 							</td>
 						</th>
@@ -67,7 +66,7 @@
 							<td>{{$lugares[$rutas[$viaje->ruta_id]->destino]->ciudad}} - {{$lugares[$rutas[$viaje->ruta_id]->destino]->provincia}}</td>
 							
 							<td>{{$viaje->horario_Salida}}</td>
-							<td><a class="button" href="{{ route('login') }}">{{ __('Comprar') }}</a></td>
+							<td><a class="submit" href="{{ route('login') }}">{{ __('Comprar') }}</a></td>
 						</th>
 					@endif
 				</tr>

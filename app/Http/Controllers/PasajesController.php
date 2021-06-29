@@ -18,7 +18,6 @@ class PasajesController extends Controller
     public function index()
     {
         $viajes = $this->viajesAsientosLibres();
-        echo $viajes;
         $rutas = DB::table('rutas')->get();
         $lugares = DB::table('lugares')->get();
         return view('Pasajes.index',compact(['viajes', 'rutas', 'lugares']));
@@ -97,8 +96,7 @@ class PasajesController extends Controller
      */
     public function show($id)
     {
-       $pasaje = Pasaje::find($id);
-       return view('Pasajes.show',['pasaje' => Pasaje::findOrFail($id)],['viaje' => Viaje::find($pasaje->viaje_id)]);
+       return view('Pasajes.show',['viaje' => Viaje::findOrFail($id)]);
     }
 
     /**
