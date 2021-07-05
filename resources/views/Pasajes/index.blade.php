@@ -49,8 +49,8 @@
 
 							<td>{{$viaje->horario_Salida}}</td>
 							<td>
-								<form action="{{ route('Pasajes.nuevo') }}" method="GET">
-									<input type="hidden" name="viajeID" value="{{$viaje->id}}" readonly>
+								<form action="{{ route('Pasajes.create') }}" method="GET">
+									<input type="hidden" name="viaje_id" value="{{$viaje->id}}" readonly>
 									<button type="submit" class="btn btn-primary btn-sm">Comprar</button>
 								</form>
 							</td>

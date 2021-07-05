@@ -12,12 +12,6 @@
 	            	<div class="card-header">{{ __('Informacion de combro') }}</div>
 
 		                <div class="card-body">
-			            	<form method="POST" action="{{ route('Pasajes.almacenar') }}">
-								@csrf
-								<div class="form-group">
-									<label for="viaje_id">Codigo de Viaje:</label>
-									<input type="text" id="viaje_id" value="{{$viaje->id}}" readonly>
-								</div>
 								<div class="form-group">
 									<label for="precio">Precio:</label>
 									<input type="text" id="precio" value="$ {{$viaje->precio}}" readonly>
@@ -38,10 +32,14 @@
 									<label for="vencimiento">Vence:</label>
 									<input type="month" name="vencimiento" min="2021-10">
 								</div>
-								<input type="text" id="usuario_id" value="{{Auth::user()->id}}" readonly hidden>
-									<input type="text" id="estado" value="reservado" readonly hidden>
-								<button type="submit" class="btn btn-primary btn-sm">Confirmar Pago</button>
-							</form>
+								<form method="POST" action="{{ route('Pasajes.store') }}">
+									@csrf
+									<label>Codigo de Viaje:</label>
+									<input type="text" name="viaje_id" value="{{$viaje->id}}" readonly>
+									<input type="hidden" name="usuario_id" value="{{Auth::user()->id}}" readonly>
+										<input type="text" id="estado" value="reservado" readonly hidden> <br>
+									<button type="submit" class="btn btn-primary btn-sm">Confirmar Pago</button>
+								</form>
 						</div>
 					</div>
 	            </div>

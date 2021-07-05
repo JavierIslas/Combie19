@@ -63,4 +63,13 @@ class User extends Authenticatable
     public static function puedeComentar(){
         return DB::table('users')->where('id','=', Auth::id())->value('compro');
     }
+
+    public static function tienePasajes(){
+        $pasajes = DB::table('pasajes')->where('usuario_id','=', Auth::id())->get();
+        if(count($pasajes) > 0){
+            echo $pasajes;
+            return true;
+        }
+        return false;
+    }
 }

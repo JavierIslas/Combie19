@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Viaje;
 use App\Models\User;
 use App\Models\Pasaje;
@@ -59,8 +60,8 @@ class PasajesController extends Controller
      */
     public function create(Request $request)
     {
-        echo $request;
-        return view('Pasajes.create',['viaje' => Viaje::findOrFail($request->viajeID)]);
+        $viaje = Viaje::find($request->viaje_id);
+        return view('Pasajes.create',['viaje' => Viaje::find($request->viaje_id)]);
     }
 
     /**
@@ -71,20 +72,21 @@ class PasajesController extends Controller
      */
     public function store(Request $request)
     {
-
-       $viaje = Viaje::find($request->viaje_id);
-       $usuario = Usuario::find($request->usuario_id);
-       $request->validate([
-            'viaje_id'=> 'required',
-            'usuario_id'=> 'required',
-            'estado' => 'required',
-         ]);
-       Pasaje::create( [
+        $validated = $request->validate([
+            'viaje_id' => 'required',
+            'usuario_id' => 'required',
+        ]);
+        
+        $viaje = Viaje::find($request->input('viaje_id'));
+        $asientos = $viaje->asientos_disponibles - 1;
+        $viaje->update(['asientos_disponibles'=>$asientos]);
+        
+        Pasaje::create( [
             'viaje_id'=> $request->viaje_id,
             'usuario_id'=> $request->usuario_id,
             'estado' => 'reservado',
         ]);
-      return redirect()->route('Pasajes.index')->with('status', __('Pasaje reservado Satisfactoriamente'));
+        return redirect()->route('Pasajes')->with('status', __('Pasaje reservado Satisfactoriamente'));
     }
 
     /**
