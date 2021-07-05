@@ -49,7 +49,7 @@
 
 							<td>{{$viaje->horario_Salida}}</td>
 							<td>
-								<form action="{{ route('Pasajes.show', Auth::user()->id) }}" method="GET">
+								<form action="{{ route('Pasajes.nuevo') }}" method="GET">
 									<input type="hidden" name="viajeID" value="{{$viaje->id}}" readonly>
 									<button type="submit" class="btn btn-primary btn-sm">Comprar</button>
 								</form>

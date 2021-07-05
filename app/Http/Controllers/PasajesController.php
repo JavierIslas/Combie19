@@ -57,11 +57,10 @@ class PasajesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        
-        $rutas = Ruta::get();
-        return view('Pasajes.create',compact('rutas'),['viaje' => new Viaje]);
+        echo $request;
+        return view('Pasajes.create',['viaje' => Viaje::findOrFail($request->viajeID)]);
     }
 
     /**
@@ -107,10 +106,8 @@ class PasajesController extends Controller
      */
     public function edit($id)
     {
-      
         $pasaje = Pasaje::get();
         return view('Pasajes.edit',compact('pasaje'),['pasaje' => Pasaje::findOrFail($id)]);
-        
     }
 
     /**
