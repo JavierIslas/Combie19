@@ -30,7 +30,7 @@ class altaChoferRequest extends FormRequest
             "email" => "required|email|max:128|unique:users,email,".Auth::id().",id", //ERROR
             'password' => 'required',
             'phone' => 'required',
-            'birthday' => 'required',
+            'birthday' => 'required|before:18 years ago',
             'extra' => 'required',
         ];
     }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 
 use App\Models\Locacion;
+use App\Models\Ruta;
 
 
 class LocacionesController extends Controller
@@ -85,22 +86,30 @@ class LocacionesController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        try {
+        
         $locacion= Locacion::find($id);
-        $locacion -> update( $request -> validate ([
-             'ciudad' => 'required|String',
-             'provincia' => 'required|String'
-             ]));
+        $rutasOrigen = Ruta::where('origen',$locacion->id)->get();
+        $rutasDestino = Ruta::where('destino',$locacion->id)->get();
+        if ($rutasOrigen->isEmpty() && $rutasDestino->isEmpty() ) {
+            try {
+               
+               $locacion -> update( $request -> validate ([
+                    'ciudad' => 'required|String',
+                    'provincia' => 'required|String'
+                     ]));
 
-        return redirect()->route('administracionLocaciones.show', $id)->with('status', __('Locacion actualizada exitosamente'));
+                return redirect()->route('administracionLocaciones.show', $id)->with('status', __('Locacion actualizada exitosamente'));
 
         } catch(QueryException $ex){
         
-        return redirect()->route('administracionLocaciones.edit',$id)->with('status',__('Error: Ya existe una ciudad para esa provincia en la base de datos'));
+                return redirect()->route('administracionLocaciones.edit',$id)->with('status',__('Error: Ya existe una ciudad para esa provincia en la base de datos'));
+                   }
+        } else {
+            return redirect()->route('administracionLocaciones.edit',$id)->with('status',__('Error: No se puede modificar una locacion asignada a una ruta'));
+                   }
         }
+        
 
-    }
 
     /**
      * Remove the specified resource from storage.

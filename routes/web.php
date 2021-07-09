@@ -56,3 +56,6 @@ Route::delete('/comentarios/{id}', [ComentarioController::class, 'destroy'])->na
 
 Route::resource('/administracionViajes', 'ViajesController');
 Route::resource('/administracionInsumos','InsumosController');
+
+Route::resource('/administracionViajesChofer', 'ViajesChoferController');
+Route::resource('/administracionPasajerosChofer', 'PasajerosChoferController');

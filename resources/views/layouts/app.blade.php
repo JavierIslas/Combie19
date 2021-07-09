@@ -74,6 +74,8 @@
                             
                         @endif
                         @if (User::isDriver())
+                             <li class= "{{setActive('administracionViajesChofer')}}"><a href="{{route('administracionViajesChofer.index')}}">@lang('Ver Viajes')</a>
+                            </li>
 
                         @endif
                     @auth

@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Collection;
 
 use App\Models\Combi;
 use App\Models\Chofer;
+use App\Models\Ruta;
+use App\Models\Viaje;
 
 use App\Http\Requests\SaveCombiRequest;
 
@@ -88,13 +91,21 @@ class CombisController extends Controller
      */
     public function update(SaveCombiRequest $request, $id)
     {
-        try {
-            $combi= Combi::find($id);
+       
+       $combi= Combi::find($id);
+       $rutas = Ruta::where('combie_id',$combi->id)->get();
+       if ($rutas->isEmpty()) {
+            try {
             $combi -> update($request -> validated());
             return redirect()->route('administracionCombis.show',$id)->with('status', __('Combi actualizada.'));
-        } catch (QueryException $e) {
+                } catch (QueryException $e) {
             return redirect()->route('administracionCombis.edit',$id)->with('status', __('Error: La patente ya se encuentra registrada en la base de datos'));
+                }
+        } else {
+            return redirect()->route('administracionCombis.edit',$id)->with('status', __('Error: No se puede modificar una combi asignada a una ruta'));
         }
+        
+        
         
         
     }

@@ -47,7 +47,7 @@ class ViajesController extends Controller
        $combi = Combi::find($ruta->combie_id);
        $request->validate([
              'precio'=> 'required|numeric|Min:1',
-             'fecha'=> 'required|Date',
+             'fecha'=> 'required|Date|after: today',
              'horario_Salida'=>'required|date_format:H:i',
              'horario_Llegada'=>'required|date_format:H:i',
              'ruta_id'=> 'required',
@@ -103,7 +103,7 @@ class ViajesController extends Controller
             $viaje=Viaje::find($id);
             $request->validate([
              'precio'=> 'required|numeric|Min:1',
-             'fecha'=> 'required|Date',
+             'fecha'=> 'required|Date|after: today',
              'horario_Salida'=>'required',
              'horario_Llegada'=>'required',
             ]);
@@ -121,7 +121,7 @@ class ViajesController extends Controller
 
             }
             catch  (QueryException $e){
-              return redirect()->route('administracionViajes.show',$id)->with('status', __('No se puede modificar un viaje asignado a una Ruta'));   
+              return redirect()->route('administracionViajes.show',$id)->with('status', __('No se puede modificar que ha sido comprado'));   
             }
             
     }
