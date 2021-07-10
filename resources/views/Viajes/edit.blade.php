@@ -9,7 +9,6 @@ use App\Models\Locacion;
 	<h1>Sistema para modificar Viaje</h1>
 <br>
 @include('partials.session-status')
-@include('partials.errorVal')
 	<form method="POST" action="{{ route('administracionViajes.update', $viaje) }}">
 		@csrf @method('PATCH')
 		@include('Viajes._formularioViajes', ['btnText' => 'Modificar Viaje'])

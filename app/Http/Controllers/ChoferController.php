@@ -36,12 +36,14 @@ class ChoferController extends Controller
 
     public function store(altaChoferRequest $validacion){
         try{
+            $goldchofer=2;
             User::create([
                 'name' => $validacion->name." ".$validacion->last_name,
                 'email' => $validacion->email,
                 'password' => Hash::make($validacion->password),
                 'phone' => $validacion->phone,
                 'birthday' => $validacion->birthday,
+                'gold'=> $goldchofer,
             ]);
         } catch(QueryException $ex){
             return redirect()->route('Choferes')->with('status', __('El mail pertenece a un usuario registrado.'));
@@ -63,8 +65,11 @@ class ChoferController extends Controller
 
     public function destroy($id){
         try {
+            $chofer= Chofer::find($id);
             Chofer::destroy($id);
+            User::where('email', $chofer->email)->delete();
             return redirect()->route('Choferes')->with('status', __('Chofer eliminado correctamente.'));
+
         } catch(QueryException $ex){
             return redirect()->route('Choferes.show', $id)->with('status', __('No se  puede eliminar, Chofer asignado a una combi.'));
         }
