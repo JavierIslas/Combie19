@@ -31,7 +31,11 @@ class ViajesChoferController extends Controller
      */
     public function create()
     {
+<<<<<<< HEAD
+       //
+=======
         //
+>>>>>>> 98af882fdb292ac0864eea7d3bc72551cd5df8a5
     }
 
     /**
@@ -54,7 +58,11 @@ class ViajesChoferController extends Controller
     public function show($id)
     {
         $viaje=Viaje::find($id);
+<<<<<<< HEAD
+        $pasajeros = Pasaje::where('viaje_id', $viaje->id)->get();
+=======
          $pasajeros = Pasaje::where('viaje_id', $viaje->id)->get();
+>>>>>>> 98af882fdb292ac0864eea7d3bc72551cd5df8a5
 
         return view ('Choferes.pasajeros',  compact('pasajeros'), ['viaje'=>Viaje::find($id) ]);
     }
@@ -101,6 +109,10 @@ class ViajesChoferController extends Controller
      */
     public function destroy($id) //Ausente
     {
+<<<<<<< HEAD
+        //
+=======
         //   
+>>>>>>> 98af882fdb292ac0864eea7d3bc72551cd5df8a5
     }
 }

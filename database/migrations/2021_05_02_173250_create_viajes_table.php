@@ -23,6 +23,9 @@ class CreateViajesTable extends Migration
             $table->foreign('ruta_id')->references('id')->on('rutas');
             $table->bigInteger('asientos_disponibles');
             $table->timestamps();
+            $table->bigInteger('chofer_id')->unsigned();
+            $table->foreign('chofer_id')->references('id')->on('choferes');
+            
         });
     }
 

@@ -11,7 +11,11 @@ $usuario=User::find($pasaje->usuario_id)
 @include('partials.errorVal')
 	 <form method="POST" action="{{ route('administracionPasajerosChofer.update', $pasaje) }}">
 		@csrf @method('PATCH')
+<<<<<<< HEAD
+		<label>Fiebre: </label><input type="number" step="0.01"name="fiebre" required ><br>
+=======
 		<label>Fiebre: </label><input type="number" name="fiebre"  ><br>
+>>>>>>> 98af882fdb292ac0864eea7d3bc72551cd5df8a5
 		
 
          <label>¿Dolor muscular?</label>

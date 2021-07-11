@@ -45,7 +45,7 @@ class InsumosController extends Controller
             'tipo'=> 'required'
         ])); 
 
-        return redirect()->route('administracionInsumos.index')->with('status',__('Insumo agregado con exito'));;
+        return redirect()->route('administracionInsumos.index')->with('status',__('Insumo agregado con exito'));
 
      }
 
