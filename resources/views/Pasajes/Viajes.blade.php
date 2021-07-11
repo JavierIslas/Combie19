@@ -25,9 +25,11 @@
 						<th scope="row">{{$viajes[$pasaje->viaje_id - 1]->horario_Salida}}</th>
 						<th scope="row">{{$pasaje->estado}}</th>
 						<th>
+							@if($pasaje->estado == "reservado")
 							<form action="{{ route('Pasajes.editar', $pasaje->id) }}" method="GET">
 									<button type="submit" class="btn btn-danger">CANCELAR</button>
-								</form>
+							</form>
+							@endif
 						</th>
 					</tr>
 				@endforeach
