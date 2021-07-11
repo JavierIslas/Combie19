@@ -23,7 +23,10 @@ class User extends Authenticatable
         'email',
         'password',
         'phone',
-        'birthday'
+        'birthday',
+        'quarentine',
+        'gold',
+        'compro'
     ];
 
     /**
@@ -67,7 +70,6 @@ class User extends Authenticatable
     public static function tienePasajes(){
         $pasajes = DB::table('pasajes')->where('usuario_id','=', Auth::id())->get();
         if(count($pasajes) > 0){
-            echo $pasajes;
             return true;
         }
         return false;
