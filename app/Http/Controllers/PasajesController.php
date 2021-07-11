@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Viaje;
 use App\Models\User;
 use App\Models\Pasaje;
+use DateTime;
 
 class PasajesController extends Controller
 {
@@ -109,8 +110,7 @@ class PasajesController extends Controller
      */
     public function edit($id)
     {
-        $pasaje = Pasaje::get();
-        return view('Pasajes.edit',compact('pasaje'),['pasaje' => Pasaje::findOrFail($id)]);
+        return view('Pasajes.show',['pasaje' => Pasaje::findOrFail($id)]);
     }
 
     /**
@@ -122,12 +122,29 @@ class PasajesController extends Controller
      */
     public function update(Request $request, $id)
     {
-            
+        $pasaje = Pasaje::findOrFail($id);
+        $pasaje->update(['estado'=>"cancelado"]);
+        $viaje = Viaje::find($pasaje->viaje_id);
+        $asientos = $viaje->asientos_disponibles + 1;
+        $viaje->update(['asientos_disponibles'=>$asientos]);
+
+        $from_date = $viaje->fecha;
+        $to_date = "2021-07-12";
+        $first_datetime = new DateTime($from_date);
+        $last_datetime = new DateTime($to_date);
+        $interval = $first_datetime->diff($last_datetime);
+        $final_days = $interval->format('%a');
+        echo $final_days;
+
+        return redirect()->route('Pasajes')->with('status', __('Su Pasaje se cancelo Satisfactoriamente'));  
     }
 
     public function pasajesUsuario($id){
-        $pasajes = DB::table('pasajes')->where('usuario_id', '=', $id)->get()
-        return view('Pasajes.Viajes', )
+        $viajes = DB::table('viajes')->get();
+        $rutas = DB::table('rutas')->get();
+        $lugares = DB::table('lugares')->get();
+        $pasajes = DB::table('pasajes')->where('usuario_id', '=', $id)->get();
+        return view('Pasajes.viajes', compact(['pasajes', 'viajes', 'rutas', 'lugares']));
     }
 
 }
