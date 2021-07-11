@@ -59,4 +59,7 @@ Route::resource('/administracionViajes', 'ViajesController');
 Route::resource('/administracionInsumos','InsumosController');
 
 Route::resource('/administracionViajesChofer', 'ViajesChoferController');
+Route::get('/administracionChoferes/{id}', [ChoferController::class, 'nueva'])->name('administracionViajesChofer.nueva');
 Route::resource('/administracionPasajerosChofer', 'PasajerosChoferController');
+Route::resource('/administracionReportes', 'ReportesController');
+Route::resource('/administracionCompraChoferes', 'CompraChoferes');

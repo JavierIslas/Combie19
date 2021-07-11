@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('title', 'Nuestros Viajes')
@@ -22,7 +23,12 @@
             </div>
         </div>
     </div>
-
+<?php
+use App\Models\User;
+use App\Models\Viaje;
+use App\Models\Ruta;
+use App\Models\Locacion;
+?>
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -36,6 +42,12 @@
 		</thead>
 		<tbody>
 			@forelse($viajes as $viaje)
+			<?php
+			$ruta = Ruta::find($viaje->ruta_id);
+			$origen=Locacion::find($ruta->origen);
+			$destino=Locacion::find($ruta->destino);
+				?>
+		     
 				<tr>
 					@if(Auth::user())	
 						<th name="viaje_id" scope="row">{{$viaje->id}}
@@ -43,9 +55,9 @@
 
 							<td>{{$viaje->fecha}}</td>
 
-							<td>{{$lugares[$rutas[$viaje->ruta_id]->origen]->ciudad}} - {{$lugares[$rutas[$viaje->ruta_id]->origen]->provincia}}</td>
-
-							<td>{{$lugares[$rutas[$viaje->ruta_id]->destino]->ciudad}} - {{$lugares[$rutas[$viaje->ruta_id]->destino]->provincia}}</td>
+							<td>{{$origen->ciudad}}  {{$origen->Provincia}}</td>
+                             
+                            <td>{{$destino->ciudad}}  {{$destino->Provincia}}</td>
 
 							<td>{{$viaje->horario_Salida}}</td>
 							<td>
@@ -61,10 +73,10 @@
 
 							<td>{{$viaje->fecha}}</td>
 
-							<td>{{$lugares[$rutas[$viaje->ruta_id]->origen]->ciudad}} - {{$lugares[$rutas[$viaje->ruta_id]->origen]->provincia}}</td>
+							<td>{{$origen->ciudad}}  {{$origen->Provincia}}</td>
 
-							<td>{{$lugares[$rutas[$viaje->ruta_id]->destino]->ciudad}} - {{$lugares[$rutas[$viaje->ruta_id]->destino]->provincia}}</td>
-							
+							<td>{{$destino->ciudad}}  {{$destino->Provincia}}</td>
+
 							<td>{{$viaje->horario_Salida}}</td>
 							<td><a class="submit" href="{{ route('login') }}">{{ __('Comprar') }}</a></td>
 						</th>

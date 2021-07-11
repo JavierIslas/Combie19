@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
@@ -40,6 +41,7 @@ class PasajesController extends Controller
             foreach ($rutasConCiudad as $ruta) {
                 array_push($idRutas, $ruta->id);
             }
+
             $viajes = $viajes->whereIn('ruta_id', $idRutas);      
         }
         if($request->provincia){
@@ -139,6 +141,25 @@ class PasajesController extends Controller
         return redirect()->route('Pasajes')->with('status', __('Su Pasaje se cancelo Satisfactoriamente'));  
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     *//*
+    public function destroy($id)
+    {
+        $viaje=Viaje::findOrFail($id);
+             
+        try {
+                Viaje::destroy($id);
+                return redirect()->route('administracionViajes.index')->with('status', __('Viaje eliminado satisfactoriamente.'));
+             } catch (QueryException $e) {
+                  return redirect()->route('administracionViajes.show', $id)->with('status', __('El viaje no puede ser elimindo'));
+            }
+    
+    }*/
+
     public function pasajesUsuario($id){
         $viajes = DB::table('viajes')->get();
         $rutas = DB::table('rutas')->get();
@@ -148,3 +169,4 @@ class PasajesController extends Controller
     }
 
 }
+

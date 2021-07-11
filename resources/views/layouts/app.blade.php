@@ -71,6 +71,9 @@
 
                             <li class= "{{setActive('administracionInsumos')}}"><a href="{{route('administracionInsumos.index')}}">@lang('Administracion de Insumos')</a>
                             </li>
+
+                            <li class= "{{setActive('administracionReportes')}}"><a href="{{route('administracionReportes.index')}}">@lang('Generar Reportes')</a>
+                            </li>
                             
                         @endif
                         @if (User::isDriver())
