@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Database\QueryException;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Viaje;
 use App\Models\User;
 use App\Models\Pasaje;
+use App\Models\Viaje;
+use Illuminate\Support\Facades\Hash;
 
-class ViajesChoferController extends Controller
+class CompraChoferes extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +17,7 @@ class ViajesChoferController extends Controller
      */
     public function index()
     {
-        
-        $viajes = Viaje::get();
-        return view ('Choferes.viajes', compact('viajes'));
+        //
     }
 
     /**
@@ -31,7 +27,7 @@ class ViajesChoferController extends Controller
      */
     public function create()
     {
-      //
+        //
     }
 
     /**
@@ -42,9 +38,23 @@ class ViajesChoferController extends Controller
      */
     public function store(Request $request)
     {
-         //
-    }
+        $usuario= User::where('email',$request->email)->first();;
+        //pregunto si existe
+        if ($usuario == null) {
+            //Creo al usuario
+            $usuario=User::create([
+            'name' => $request->name ,
+            'email' => $request->email,
+            'password' => Hash::make(12345678),
+            'phone' => $request->phone,
+            'birthday' => $request->birthday,
+        ]);
 
+        }
+         
+         //Hacer que el usuario compre el pasaje
+       return view('Choferes.pago',['usuario' => User::find($usuario->id)], ['viaje'=> Viaje::find($request->viaje)]);
+}
     /**
      * Display the specified resource.
      *
@@ -53,11 +63,7 @@ class ViajesChoferController extends Controller
      */
     public function show($id)
     {
-
-        $viaje=Viaje::find($id);
-        $pasajeros = Pasaje::where('viaje_id', $viaje->id)->get();
-
-        return view ('Choferes.pasajeros',  compact('pasajeros'), ['viaje'=>Viaje::find($id) ]);
+         return view('Choferes.register', ['viaje' => Viaje::findOrFail($id)]);
     }
 
     /**
@@ -66,19 +72,9 @@ class ViajesChoferController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-
-    public function edit($id) //Ausente
+    public function edit($id)
     {
-       $pasaje= Pasaje::findOrFail($id);
-       $viaje= Viaje::find($pasaje->viaje_id);
-       $asientos = $viaje->asientos_disponibles + 1;
-       $pasaje= Pasaje::where('id', $id)->update(['estado' => 'ausente']);
-       $viaje= Viaje::where('id', $viaje->id)->update(['asientos_disponibles'=>$asientos]);
-       $pasaje= Pasaje::findOrFail($id);
-       $pasajeros = Pasaje::get();
-       return view ('Choferes.pasajeros',  compact('pasajeros'), ['viaje'=>Viaje::find($pasaje->viaje_id)]);
-
+        return view('Choferes.iniciarSesionPasajero',['viaje' => Viaje::findOrFail($id)]);
     }
 
     /**
@@ -88,10 +84,9 @@ class ViajesChoferController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) 
-    { 
+    public function update(Request $request, $id)
+    {
         //
-          
     }
 
     /**
@@ -100,7 +95,7 @@ class ViajesChoferController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) //Ausente
+    public function destroy($id)
     {
         //
     }

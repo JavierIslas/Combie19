@@ -1,10 +1,7 @@
 <?php
 use App\Models\User;
 use APP\Models\Viaje;
-<<<<<<< HEAD
 use APP\Models\Pasaje;
-=======
->>>>>>> 98af882fdb292ac0864eea7d3bc72551cd5df8a5
  
 ?>
 
@@ -14,13 +11,6 @@ use APP\Models\Pasaje;
 
 @section('content')
 	<h1>Pasajeros del Viaje</h1>
-<<<<<<< HEAD
-=======
-	<p>Asientos disponibles {{$viaje->asientos_disponibles}}</p>
-	@if($viaje->asientos_disponibles > 0)
-	<a href="">Vender Pasaje</a>
-	@endif
->>>>>>> 98af882fdb292ac0864eea7d3bc72551cd5df8a5
 	<ul>
 		@forelse($pasajeros as $pasaje)
 		<?php
@@ -40,19 +30,16 @@ use APP\Models\Pasaje;
 			<li>No hay pasajes comprados</li>
 		@endforelse
 	</ul>
-<<<<<<< HEAD
 	<?php
 	$existe = Pasaje::where('estado', '=', 'cancelado' )->first();
+	$existe2 = Pasaje::where('estado', '=', 'finalizado' )->first();
     ?>
-    @if ($existe=== null)
+    @if ($existe == null && $existe2 == null)
 	<p>Asientos disponibles {{$viaje->asientos_disponibles}}</p>
 	@if($viaje->asientos_disponibles > 0)
-	<a href="{{route('Pasajes')}}">Vender Pasaje</a><br>
+	<a href="{{route('administracionCompraChoferes.show', $viaje)}}">Vender Pasaje</a><br>
 	@endif
-	<a href="">Terminar Viaje</a> <br>
+	<a href="{{ route('administracionReportes.edit', $viaje) }}">Terminar Viaje</a> <br>
 	<a href="{{ route('administracionPasajerosChofer.show', $viaje) }}">Cancelar viaje</a>
 	@endif
-=======
-	<a href="">Terminar Viaje</a>
->>>>>>> 98af882fdb292ac0864eea7d3bc72551cd5df8a5
 @endsection

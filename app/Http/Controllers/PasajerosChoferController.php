@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Pasaje;
 use App\Models\Viaje;
+use Illuminate\Support\Facades\Hash;
 
 class PasajerosChoferController extends Controller
 {
@@ -14,7 +15,7 @@ class PasajerosChoferController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($viaje)
     {
         //
     }
@@ -48,8 +49,7 @@ class PasajerosChoferController extends Controller
      */
     public function show($id)
     {
-<<<<<<< HEAD
-        $viaje=Viaje::find($id);
+         $viaje=Viaje::find($id);
          $pasajeros = Pasaje::where('viaje_id', $viaje->id)->get();
          $existe = Pasaje::where('estado', '=', 'en viaje' )->first();
             if ($existe === null) {
@@ -61,9 +61,6 @@ class PasajerosChoferController extends Controller
          }
          else
             return redirect()->route ('administracionViajesChofer.show', $viaje)->with('status',__('No se puede cancelar el viaje ya que hay pasajeros en viaje'));
-=======
-        //
->>>>>>> 98af882fdb292ac0864eea7d3bc72551cd5df8a5
     }
 
     /**
@@ -92,12 +89,9 @@ class PasajerosChoferController extends Controller
         $usuarioID= $pasaje->usuario_id;
         $viaje= Viaje::find($pasaje->viaje_id);
         $asientos = $viaje->asientos_disponibles + 1;
-<<<<<<< HEAD
         $request->validate([
              'fiebre'=> 'required|numeric',
          ]);
-=======
->>>>>>> 98af882fdb292ac0864eea7d3bc72551cd5df8a5
         if ($request->fiebre > 37 || $total > 1) {
              $pasaje= Pasaje::where('id', $id)->update(['estado' => 'cuarentena']);
              $usuario= User::where('id', $usuarioID )->update(['quarentine'=> 1]);

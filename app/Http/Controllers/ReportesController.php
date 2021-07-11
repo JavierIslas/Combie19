@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Pasaje;
+use App\Models\Viaje;
 
 class ReportesController extends Controller
 {
@@ -59,7 +61,19 @@ class ReportesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $viaje=Viaje::find($id);
+        $existe = Pasaje::where('viaje_id', $viaje->id)
+                     ->where('estado', '=', 'reservado' )->first();
+        $pasajeros = Pasaje::where('viaje_id', $viaje->id)->get();
+            if ($existe === null) {
+               foreach ($pasajeros as $pasajero) {
+                  if ($pasajero->estado == "en viaje")
+                      $pasajero->update(['estado' => 'finalizado']);
+         }
+        return redirect()->route ('administracionViajesChofer.show', $viaje)->with('status',__('Se ha finalizado el viaje con exito'));
+         }
+         else
+            return redirect()->route ('administracionViajesChofer.show', $viaje)->with('status',__('No se puede finalizar el viaje ya que hay pasajeros que estan en el estado de reservado'));
     }
 
     /**

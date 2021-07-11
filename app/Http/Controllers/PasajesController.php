@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
@@ -39,7 +40,7 @@ class PasajesController extends Controller
             foreach ($rutasConCiudad as $ruta) {
                 array_push($idRutas, $ruta->id);
             }
-            
+        
             $viajes = $viajes->whereIn('ruta_id', $idRutas);      
         }
         if($request->provincia){
