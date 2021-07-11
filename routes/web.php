@@ -19,6 +19,7 @@ Route::patch('/Pasajes/{id}', [PasajesController::class, 'update'])->name('Pasaj
 Route::post('/Pasajes', [PasajesController::class, 'store'])->name('Pasajes.store');
 Route::get('/Pasajes', [PasajesController::class, 'search'])->name('Pasajes.search');
 Route::delete('/Pasajes/{id}', [PasajesController::class, 'destroy'])->name('Pasajes.eliminar');
+Route::get('/Mis-Viajes/{id}', [PasajesController::class, 'pasajesUsuario'])->name('Pasajes.viajes');
 
 Route::get('/administracionChoferes', [ChoferController::class, 'index'])->name('Choferes');
 Route::get('/administracionChoferes/agregar', [ChoferController::class, 'create'])->name('Choferes.nuevo');

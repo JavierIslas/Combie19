@@ -40,7 +40,7 @@ class PasajesController extends Controller
             foreach ($rutasConCiudad as $ruta) {
                 array_push($idRutas, $ruta->id);
             }
-        
+
             $viajes = $viajes->whereIn('ruta_id', $idRutas);      
         }
         if($request->provincia){
@@ -82,7 +82,8 @@ class PasajesController extends Controller
         $viaje = Viaje::find($request->input('viaje_id'));
         $asientos = $viaje->asientos_disponibles - 1;
         $viaje->update(['asientos_disponibles'=>$asientos]);
-        
+        $usuario = User::findOrFail($request->usuario_id);
+        $usuario->update(['compro'=> 1]);
         Pasaje::create( [
             'viaje_id'=> $request->viaje_id,
             'usuario_id'=> $request->usuario_id,
@@ -144,4 +145,11 @@ class PasajesController extends Controller
             }
     
     }*/
+
+    public function pasajesUsuario($id){
+        $pasajes = DB::table('pasajes')->where('usuario_id', '=', $id)->get()
+        return view('Pasajes.Viajes', )
+    }
+
 }
+
