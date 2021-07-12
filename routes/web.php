@@ -46,6 +46,9 @@ Auth::routes();
 Route::get('/areaPersonal/{id}', [UserController::class, 'show'])->name('User.show');
 Route::get('/areaPersonal/{id}/editar', [UserController::class, 'edit'])->name('User.editar');
 Route::patch('/areaPersonal/{id}', [UserController::class, 'update'])->name('User.actualizar');
+Route::get('/areaPersonal/{id}/Premium', [UserController::class, 'mejoraCuenta'])->name('User.Premium');
+Route::get('/areaPersonal/{id}/gold', [UserController::class, 'cambiarSubscripcion'])->name('User.gold');
+
 
 Route::get('/comentarios', [ComentarioController::class, 'index'])->name('Comentario');
 Route::get('/comentarios/agregar', [ComentarioController::class, 'create'])->name('Comentario.nuevo');

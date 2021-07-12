@@ -26,8 +26,7 @@ class User extends Authenticatable
         'birthday',
         'quarentine',
         'gold',
-        'compro',
-        'gold'
+        'compro'
     ];
 
     /**
@@ -48,6 +47,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public static function noGold(){ 
+        $fila = DB::table('users')->where('id','=', Auth::id())->value('gold');
+        return $fila == 0;
+    }
 
     public static function isClient(){ 
         $fila = DB::table('users')->where('id','=', Auth::id())->value('gold');

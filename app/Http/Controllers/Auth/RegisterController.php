@@ -54,7 +54,7 @@ class RegisterController extends Controller
         $messages = [
             'name.required' => 'Please enter full name',     
             'email.required' => 'Please enter a valid address',
-            'birthday.required' => 'You must be 18 yers old or older'
+            'birthday.required' => 'You must be 18 years old or older'
         ];
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
@@ -73,6 +73,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if ($data['gold']) {
+            return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'phone' => $data['phone'],
+            'birthday' => $data['birthday'],
+            'gold' => $data['GOLD'],
+        ]);
+        }
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
