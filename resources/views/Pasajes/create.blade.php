@@ -12,6 +12,8 @@
 	            	<div class="card-header">{{ __('Informacion de combro') }}</div>
 
 		                <div class="card-body">
+		                	<form method="POST" action="{{ route('Pasajes.store') }}">
+									@csrf
 								<div class="form-group">
 									<label for="precio">Precio:</label>
 									<input type="text" id="precio" value="$ {{$viaje->precio}}" readonly>
@@ -22,18 +24,16 @@
 								</div>
 								<div class="form-group">
 									<label for="tarjeta">Ingrese los 16 numeros de la tarjeta</label>
-									<input type="text" name="tarjeta" required       minlength="16" maxlength="16" >
+									<input type="text" name="tarjeta" required       minlength="16">
 								</div>
 								<div class="form-group">
 									<label for="seguridad">Ingrese los 3 numeros de seguridad</label>
-									<input type="text" name="seguridad" required       minlength="3" maxlength="3" >
+									<input type="text" name="seguridad" required       minlength="3">
 								</div>
 								<div class="form-group">
 									<label for="vencimiento">Vence:</label>
 									<input type="month" name="vencimiento" min="2021-10">
 								</div>
-								<form method="POST" action="{{ route('Pasajes.store') }}">
-									@csrf
 									<label>Codigo de Viaje:</label>
 									<input type="text" name="viaje_id" value="{{$viaje->id}}" readonly>
 									<input type="hidden" name="usuario_id" value="{{Auth::user()->id}}" readonly>
