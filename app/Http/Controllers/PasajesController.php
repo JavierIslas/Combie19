@@ -146,9 +146,11 @@ class PasajesController extends Controller
         $last_datetime = new DateTime($to_date);
         $interval = $first_datetime->diff($last_datetime);
         $final_days = $interval->format('%a');
-        echo $final_days;
 
-        return redirect()->route('Pasajes')->with('status', __('Su Pasaje se cancelo Satisfactoriamente'));  
+        if($final_days >= 2){
+            return redirect()->route('Pasajes')->with('status', __('Su Pasaje se cancelo Satisfactoriamente. Un correo le llegara informando el reintegro del 100%'));
+        }
+        return redirect()->route('Pasajes')->with('status', __('Su Pasaje se cancelo Satisfactoriamente. Un correo le llegara informando el reintegro del 50%'));
     }
 
     /**
