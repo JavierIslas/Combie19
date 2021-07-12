@@ -26,7 +26,7 @@ class saveComentarioRequest extends FormRequest
         return [
             'user_id' => 'required',
             'rating' =>'required|Int|max:5|min:1',
-            'descripcion' => 'required|max:255',
+            'descripcion' => 'required|max:255|min:5',
         ];
     }
 }

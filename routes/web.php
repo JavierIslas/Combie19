@@ -22,11 +22,11 @@ Route::delete('/Pasajes/{id}', [PasajesController::class, 'destroy'])->name('Pas
 Route::get('/Mis-Viajes/{id}', [PasajesController::class, 'pasajesUsuario'])->name('Pasajes.viajes');
 
 Route::get('/administracionChoferes', [ChoferController::class, 'index'])->name('Choferes');
+Route::get('/administracionChoferes/{id}', [ChoferController::class, 'show'])->name('Choferes.show');
 Route::get('/administracionChoferes/agregar', [ChoferController::class, 'create'])->name('Choferes.nuevo');
 Route::get('/administracionChoferes/{id}/editar', [ChoferController::class, 'edit'])->name('Choferes.editar');
 Route::patch('/administracionChoferes/{id}', [ChoferController::class, 'update'])->name('Choferes.actualizar');
 Route::post('/administracionChoferes', [ChoferController::class, 'store'])->name('Choferes.almacenar');
-Route::get('/administracionChoferes/{id}', [ChoferController::class, 'show'])->name('Choferes.show');
 Route::delete('/administracionChoferes/{id}', [ChoferController::class, 'destroy'])->name('Choferes.eliminar');
 
 Route::view('/contact', 'contact')->name('contact');

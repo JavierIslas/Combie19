@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Viaje;
 use App\Models\User;
 use App\Models\Pasaje;
+use App\Models\InsumoComprado;
+use App\Models\Insumo;
+
 
 class ViajesChoferController extends Controller
 {
@@ -29,9 +32,32 @@ class ViajesChoferController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-      //
+       $pasajes = Pasaje::where('viaje_id', $request->viaje_id)
+                          ->where('usuario_id', $request->usuario_id)->get();
+        
+        if ($pasajes->count() == 0)  //Si tiene no tiene pasaje que compre
+        {
+            $viaje = Viaje::find($request->input('viaje_id'));
+            $asientos = $viaje->asientos_disponibles - 1;
+            $viaje->update(['asientos_disponibles'=>$asientos]);
+            $usuario = User::findOrFail($request->usuario_id);
+            $usuario->update(['compro'=> 1]);
+            Pasaje::create( [
+                 'viaje_id'=> $request->viaje_id,
+                 'usuario_id'=> $request->usuario_id,
+                 'estado' => 'reservado',
+        ]);
+        }
+
+     InsumoComprado::create([
+                'viaje_id'=> $request->viaje_id,
+                 'usuario_id'=> $request->usuario_id,
+                 'insumo_id' => $request->insumo_id, ]);
+     $insumos= Insumo::get();
+     $total=$pasajes->count() +1; 
+     return view('Pasajes.complementarios', ['viaje' => Viaje::find($request->viaje_id)], compact('insumos'));
     }
 
     /**
@@ -100,7 +126,7 @@ class ViajesChoferController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) //Ausente
+    public function destroy($id) 
     {
         //
     }

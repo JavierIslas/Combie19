@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Pasaje;
 use App\Models\Viaje;
+use App\Models\InsumoComprado;
 use Illuminate\Support\Facades\Hash;
+use Auth;
 
 class PasajerosChoferController extends Controller
 {
@@ -15,9 +17,9 @@ class PasajerosChoferController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($viaje)
+    public function index()
     {
-        //
+        
     }
 
     /**
@@ -27,7 +29,11 @@ class PasajerosChoferController extends Controller
      */
     public function create()
     {
-        //
+        
+        $insumos= InsumoComprado::where('usuario_id', Auth::user()->id)
+                                 ->get();
+
+        return view('Pasajes.insumosComprados',compact('insumos'));
     }
 
     /**

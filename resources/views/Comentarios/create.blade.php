@@ -6,6 +6,7 @@
 	<h1>Dejanos tu opinion sobre Combi-19</h1>
 <br>
 @include('partials.session-status')
+@include('partials.errorVal') 
 	<form method="POST" action="{{ route('Comentario.almacenar') }}">
 		@csrf
 

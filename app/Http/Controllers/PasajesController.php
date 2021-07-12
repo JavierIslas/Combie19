@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Viaje;
 use App\Models\User;
 use App\Models\Pasaje;
+use App\Models\Insumo;
 use DateTime;
 
 class PasajesController extends Controller
@@ -64,6 +65,15 @@ class PasajesController extends Controller
     public function create(Request $request)
     {
         $viaje = Viaje::find($request->viaje_id);
+        $usuario = User::find(Auth::id());
+        if ($usuario->quarentine == 1) {
+            return redirect()->route ('Pasajes.search')->with('status',__('Los pasajeros en cuarentena no pueden comprar pasajes'));
+        }
+        
+        if ($usuario->gold == 1) {
+            $insumos=Insumo::get();
+            return view('Pasajes.complementarios',['viaje' => Viaje::find($request->viaje_id)], compact('insumos'));
+        }
         return view('Pasajes.create',['viaje' => Viaje::find($request->viaje_id)]);
     }
 

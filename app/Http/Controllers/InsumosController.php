@@ -7,6 +7,8 @@ use App\Models\Insumo;
 use Illuminate\Validation\Rule;
 use Illuminate\Database\QueryException;
 
+use App\Models\InsumoComprado;
+
 class InsumosController extends Controller
 {
     /**
@@ -68,7 +70,12 @@ class InsumosController extends Controller
      */
     public function edit($id)
     {
-        return view('Insumos.edit',['insumo' => Insumo::findOrFail($id)]);    }
+        $insumoComprado=InsumoComprado::where('insumo_id',$id)->get();
+        if ($insumoComprado == null) {
+            return view('Insumos.edit',['insumo' => Insumo::findOrFail($id)]); 
+        }
+        return redirect()->route('administracionInsumos.show',$id)->with('status', __('IERROR: no se puede modificar un insumo que ha sido comprado'));
+           }
 
     /**
      * Update the specified resource in storage.
@@ -101,7 +108,14 @@ class InsumosController extends Controller
      */
     public function destroy($id)
     {
+    try {
         Insumo::destroy($id);
            return redirect()->route('administracionInsumos.index')->with('status', __('Insumo eliminado satisfactoriamente.'));
+    }
+    catch  (QueryException $e) {
+           return redirect()->route('administracionInsumos.show',$id)->with('status', __('ERROR: no se puede eliminar un insumo que ha sido comprado'));
+    }
+
+    
     }
 }
